@@ -1,7 +1,8 @@
-package com.gdghackathon.monthlychallenges
+package com.gdghackathon.monthlychallenges.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gdghackathon.monthlychallenges.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
