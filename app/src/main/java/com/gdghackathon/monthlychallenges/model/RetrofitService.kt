@@ -6,6 +6,7 @@ import retrofit2.http.*
 
 interface RetrofitService {
     // 챌린지 생성
+    @FormUrlEncoded
     @POST("challenge")
     fun createChallenge(
         @Field("name") name: String,
