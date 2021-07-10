@@ -38,7 +38,14 @@ class MissionListRecyclerAdapter(
                 }
             }
 
-    override fun getItemCount() = (missionList.size + 1).coerceAtMost(NUM_OF_MISSIONS)
+    override fun getItemCount() =
+            if (editable) {
+                // 편집 가능한 경우 [+ 추가] 아이템 보여주기
+                (missionList.size + 1).coerceAtMost(NUM_OF_MISSIONS)
+            } else {
+                // 편집 가능한 경우 리스트 아이템만 보여주기
+                missionList.size
+            }
 
     override fun getItemViewType(position: Int) = if (position < missionList.size) VIEW_TYPE_MISSION else VIEW_TYPE_ADD
 
