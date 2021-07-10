@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
-import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.ViewModelProvider
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.model.Challenge
@@ -22,15 +21,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val createChallengeButton = findViewById<AppCompatButton>(R.id.button_create_challenge)
-        val sample1Button = findViewById<AppCompatButton>(R.id.button_1)
-        val sample2Button = findViewById<AppCompatButton>(R.id.button_2)
-        val sample3Button = findViewById<AppCompatButton>(R.id.button_3)
-        val sample4Button = findViewById<AppCompatButton>(R.id.button_4)
-        val sample5Button = findViewById<AppCompatButton>(R.id.button_5)
-        val sample6Button = findViewById<AppCompatButton>(R.id.button_6)
-        val sample7Button = findViewById<AppCompatButton>(R.id.button_7)
-        val sample8Button = findViewById<AppCompatButton>(R.id.button_8)
+        val createChallengeButton = findViewById<Button>(R.id.button_create_challenge)
+        val sample1Button = findViewById<Button>(R.id.button_1)
+        val sample2Button = findViewById<Button>(R.id.button_2)
+        val sample3Button = findViewById<Button>(R.id.button_3)
+        val sample4Button = findViewById<Button>(R.id.button_4)
+        val sample5Button = findViewById<Button>(R.id.button_5)
+        val sample6Button = findViewById<Button>(R.id.button_6)
+        val sample7Button = findViewById<Button>(R.id.button_7)
+        val sample8Button = findViewById<Button>(R.id.button_8)
         val completeChallengeButton = findViewById<ImageButton>(R.id.imagebutton_complete_challenge_list)
 
         createChallengeButton.setOnClickListener(this)
