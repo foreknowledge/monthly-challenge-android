@@ -8,7 +8,7 @@ data class Challenge(
         @SerializedName("mission_count")
         var missionCount: Int = 0,
         @SerializedName("create_date")
-        var createData: String = "",
+        var createDate: String = "",
         @SerializedName("ownMissions")
         var missionList: List<Mission>? = null
 )

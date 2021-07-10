@@ -59,11 +59,11 @@
             android:textColor="@color/color_c7c7c7"
             android:textSize="13sp"
             android:textStyle="bold"
-            android:visibility="@{challenge.createData.empty ? View.GONE : View.VISIBLE}"
+            android:visibility="@{challenge.createDate.empty ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_challenge_name"
-            app:set_startDate="@{challenge.createData}" />
+            app:set_startDate="@{challenge.createDate}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mission_list"
