@@ -28,18 +28,22 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
     private fun setupUI() {
         binding.lifecycleOwner = this
-        binding.missionList.layoutManager = GridLayoutManager(this@ChallengeContentsActivity, 5)
+        binding.challengeContents.missionList.layoutManager = GridLayoutManager(this@ChallengeContentsActivity, 5)
     }
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(this, {
-            val missionList = it.missionList?.toMutableList() ?: mutableListOf()
-            binding.missionList.adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
-                setOnItemClickListener {
-                    // 인증 or 자세히 보기
+            binding.challenge = it
+
+            with (binding.challengeContents.missionList) {
+                val missionList = it.missionList?.toMutableList() ?: mutableListOf()
+                adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
+                    setOnItemClickListener {
+                        // 인증 or 자세히 보기
+                    }
                 }
+                adapter?.notifyDataSetChanged()
             }
-            binding.missionList.adapter?.notifyDataSetChanged()
         })
     }
 }
