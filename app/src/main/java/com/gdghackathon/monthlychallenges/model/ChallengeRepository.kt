@@ -15,7 +15,7 @@ class ChallengeRepository {
 
     // 특정 챌린지 조회
     fun getChallenge(challengeId: Long) =
-        challengeDataSource.getAllChallenges(challengeId)
+        challengeDataSource.getChallenge(challengeId)
 
     // 챌린지 샘플 조회
     fun getAllSampleChallenges() =
