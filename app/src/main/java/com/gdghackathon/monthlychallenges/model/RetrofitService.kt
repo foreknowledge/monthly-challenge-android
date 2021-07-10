@@ -17,7 +17,7 @@ interface RetrofitService {
     @DELETE("challenge/{challengeId}")
     fun deleteChallenge(
         @Path("challengeId") challengeId: Long
-    ): Call<Challenge>
+    ): Call<Boolean>
 
     // 특정 챌린지 조회 (미션 포함)
     @GET("challenge/{challengeId}")

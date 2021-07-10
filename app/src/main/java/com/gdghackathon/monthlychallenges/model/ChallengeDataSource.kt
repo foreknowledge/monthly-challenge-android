@@ -11,8 +11,8 @@ class ChallengeDataSource {
         retrofitService.createChallenge(name, missionList).execute().body()
 
     // 챌린지 삭제
-    fun deleteChallenge(challengeId: Long): Challenge? =
-        retrofitService.deleteChallenge(challengeId).execute().body()
+    fun deleteChallenge(challengeId: Long): Boolean =
+        retrofitService.deleteChallenge(challengeId).execute().body() ?: false
 
     // 특정 챌린지 조회
     fun getChallenge(challengeId: Long): Challenge? =
