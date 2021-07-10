@@ -26,7 +26,7 @@
             android:id="@+id/imageview_challiney"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_challiney_1"
+            android:src="@drawable/challiney_1"
             app:layout_constraintBottom_toTopOf="@id/textview_title"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
