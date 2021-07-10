@@ -3,8 +3,10 @@ package com.gdghackathon.monthlychallenges.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.ChallengeRepository
+import kotlinx.coroutines.launch
 
 class SampleChallengesViewModel : ViewModel() {
     private val repository = ChallengeRepository
@@ -14,5 +16,10 @@ class SampleChallengesViewModel : ViewModel() {
 
     fun loadData(challengeList: List<Challenge>) {
         _sampleChallenges.value = challengeList
+    }
+
+    fun loadData() = viewModelScope.launch {
+        val sampleList = repository.getAllSampleChallenges()
+        _sampleChallenges.value = sampleList
     }
 }

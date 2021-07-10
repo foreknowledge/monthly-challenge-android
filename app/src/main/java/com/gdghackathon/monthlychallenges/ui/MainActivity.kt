@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.buttonCreateChallenge.setOnClickListener(this)
         binding.button1.setOnClickListener(this)
 
-        sampleChallengesViewModel.loadData(getAllSampleChallenges())
+//        sampleChallengesViewModel.loadData(getAllSampleChallenges())
+        sampleChallengesViewModel.loadData()
         sampleChallengesViewModel.sampleChallenges.observe(this, {
             binding.sampleList = it
         })
@@ -43,13 +44,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getAllSampleChallenges() = listOf(
-            Challenge(0, resources.getString(R.string.main_button1_text), 0),
-            Challenge(1, resources.getString(R.string.main_button2_text), 0),
-            Challenge(2, resources.getString(R.string.main_button3_text), 0),
-            Challenge(3, resources.getString(R.string.main_button4_text), 0),
-            Challenge(4, resources.getString(R.string.main_button5_text), 0),
-            Challenge(5, resources.getString(R.string.main_button6_text), 0),
-            Challenge(6, resources.getString(R.string.main_button7_text), 0),
-            Challenge(7, resources.getString(R.string.main_button8_text), 0)
+            Challenge(0, resources.getString(R.string.main_button1_text), 0, ""),
+            Challenge(1, resources.getString(R.string.main_button2_text), 0, ""),
+            Challenge(2, resources.getString(R.string.main_button3_text), 0, ""),
+            Challenge(3, resources.getString(R.string.main_button4_text), 0, ""),
+            Challenge(4, resources.getString(R.string.main_button5_text), 0, ""),
+            Challenge(5, resources.getString(R.string.main_button6_text), 0, ""),
+            Challenge(6, resources.getString(R.string.main_button7_text), 0, ""),
+            Challenge(7, resources.getString(R.string.main_button8_text), 0,"")
     )
 }
