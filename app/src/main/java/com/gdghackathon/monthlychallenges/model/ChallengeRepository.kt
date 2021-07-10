@@ -2,7 +2,7 @@ package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
 
-class ChallengeRepository {
+object ChallengeRepository {
     private val challengeDataSource = ChallengeDataSource()
 
     // 챌린지 생성
