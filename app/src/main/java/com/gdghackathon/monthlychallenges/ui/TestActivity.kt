@@ -20,7 +20,7 @@ class TestActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.missionList.apply {
             layoutManager = GridLayoutManager(this@TestActivity, 5)
-            adapter = MissionListRecyclerAdapter(getMissionList()).apply {
+            adapter = MissionListRecyclerAdapter(getMissionList(), editable = false).apply {
                 setOnItemClickListener { ToastUtil.showToast(this@TestActivity, it.name) }
             }
         }

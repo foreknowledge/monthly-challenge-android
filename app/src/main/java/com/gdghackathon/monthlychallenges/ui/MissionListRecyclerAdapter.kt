@@ -10,7 +10,8 @@ import com.gdghackathon.monthlychallenges.listener.OnItemSingleClickListener
 import com.gdghackathon.monthlychallenges.model.Mission
 
 class MissionListRecyclerAdapter(
-        private val missionList: MutableList<Mission>
+        private val missionList: MutableList<Mission>,
+        private val editable: Boolean = true
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onMissionItemClickListener: OnItemClickListener<Mission>? = null
@@ -31,7 +32,7 @@ class MissionListRecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
             when (holder) {
-                is MissionViewHolder -> holder.bind(missionList[position], onMissionItemClickListener)
+                is MissionViewHolder -> holder.bind(missionList[position], editable, onMissionItemClickListener)
                 is AddItemViewHolder -> holder.bind { onAddItemClick() }
                 else -> {
                 }
