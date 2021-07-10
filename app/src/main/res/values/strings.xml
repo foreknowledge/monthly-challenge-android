@@ -7,8 +7,7 @@
     <string name="splash_challiney_name">챌린이</string>
     <string name="splash_pharse">큰 것을 이루기 위해서는 하루에 하나씩\n작은 것을 이뤄나가는 것이 중요하다.</string>
     <string name="splash_author">- Challiney</string>
-
-
+ 
     <!-- activity_main.xml -->
     <string name="main_title">무기력 극뽁 챌린지</string>
     <string name="main_text">30일의 도전\n소소하지만 확실한 도전을 해볼까요?</string>
