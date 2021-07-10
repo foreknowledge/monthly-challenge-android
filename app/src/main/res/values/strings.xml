@@ -2,4 +2,17 @@
     <string name="app_name">Monthly Challenges</string>
 
     <string name="str_add_mission">+ 추가</string>
+
+    <!-- activity_main.xml -->
+    <string name="main_title">무기력 극뽁 챌린지</string>
+    <string name="main_text">30일의 도전\n소소하지만 확실한 도전을 해볼까요?</string>
+    <string name="main_create_challenge_button_text">⬆️ 직접 등록하기</string>
+    <string name="main_button1_text">✨ 소확도</string>
+    <string name="main_button2_text">💪🏻 극뽁</string>
+    <string name="main_button3_text">🏃🏻‍♂️ 운동</string>
+    <string name="main_button4_text">🎨 취미</string>
+    <string name="main_button5_text">🧘🏻‍♀️ 명상</string>
+    <string name="main_button6_text">✍️ 공부</string>
+    <string name="main_button7_text">📖 독서</string>
+    <string name="main_button8_text">🗓 습관</string>
 </resources>
