@@ -6,16 +6,16 @@ class ChallengeRepository {
     private val challengeDataSource = ChallengeDataSource()
 
     // 챌린지 생성
-    fun createChallenge(name: String, tag: List<String>) =
-        challengeDataSource.createChallenge(name, tag)
+    fun createChallenge(name: String, missionList: List<Mission>) =
+        challengeDataSource.createChallenge(name, missionList)
 
     // 챌린지 삭제
     fun deleteChallenge(challengeId: Long) =
         challengeDataSource.deleteChallenge(challengeId)
 
-    // 챌린지 조회(챌린지 목록)
-    fun getAllChallenges() =
-        challengeDataSource.getAllChallenges()
+    // 특정 챌린지 조회
+    fun getChallenge(challengeId: Long) =
+        challengeDataSource.getChallenge(challengeId)
 
     // 챌린지 샘플 조회
     fun getAllSampleChallenges() =

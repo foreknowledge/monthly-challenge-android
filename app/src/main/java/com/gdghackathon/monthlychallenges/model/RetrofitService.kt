@@ -10,20 +10,22 @@ interface RetrofitService {
     @POST("challenge")
     fun createChallenge(
         @Field("name") name: String,
-        @Field("tag") tag: List<String>
-    ): Call<Challenge>
+        @Field("mission") missionList: List<Mission>
+    ): Call<Long>
 
     // 챌린지 삭제
     @DELETE("challenge/{challengeId}")
     fun deleteChallenge(
         @Path("challengeId") challengeId: Long
+    ): Call<Boolean>
+
+    // 특정 챌린지 조회 (미션 포함)
+    @GET("challenge/{challengeId}")
+    fun getChallenge(
+        @Path("challengeId") challengeId: Long
     ): Call<Challenge>
 
-    // 챌린지 조회 (챌린지 목록, 미션 미포함)
-    @GET("challenge")
-    fun getAllChallenges(): Call<List<Challenge>>
-
-    // 챌린지 샘플 데이터 조회 (미션 포함)
+    // 챌린지 샘플 데이터 조회 (8개, 미션 포함)
     @GET("challenge/samples")
     fun getAllSampleChallenges(): Call<List<Challenge>>
 
