@@ -26,4 +26,11 @@
     <string name="mission_date">2021년 7월 11일</string>
     <string name="mission_title">아침밥 먹기</string>
     <string name="mission_memo">챌린지 성공</string>
+
+    <!-- dialog_upload_photo.xml -->
+    <string name="upload_photo_title">목표를 달성하였나요?</string>
+    <string name="upload_photo_text">기록할 이미지를 추가해 주세요.</string>
+    <string name="upload_button">이미지 등록</string>
+    <string name="upload_no_text"><u>이미지 없이 등록할래요</u></string>
+
 </resources>
