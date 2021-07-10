@@ -33,4 +33,10 @@
     <string name="upload_button">이미지 등록</string>
     <string name="upload_no_text"><u>이미지 없이 등록할래요</u></string>
 
+    <!-- dialog_write_memo.xml -->
+    <string name="write_memo_title">✍️ 메모를 남겨볼까요?</string>
+    <string name="write_memo_hint">챌린지 후기를 남겨주세요.</string>
+    <string name="write_button">메모 등록</string>
+    <string name="write_no_text"><u>메모 안남길래요</u></string>
+
 </resources>
