@@ -1,31 +1,30 @@
 package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
-import retrofit2.Call
 
 class ChallengeDataSource {
     private val retrofitService =
         RetrofitClient.getInstance().create(RetrofitService::class.java)
 
     // 챌린지 생성
-    fun createChallenge(name: String, missionList: List<Mission>): Call<Long> =
-        retrofitService.createChallenge(name, missionList)
+    fun createChallenge(name: String, missionList: List<Mission>): Long? =
+        retrofitService.createChallenge(name, missionList).execute().body()
 
     // 챌린지 삭제
-    fun deleteChallenge(challengeId: Long): Call<Challenge> =
-        retrofitService.deleteChallenge(challengeId)
+    fun deleteChallenge(challengeId: Long): Challenge? =
+        retrofitService.deleteChallenge(challengeId).execute().body()
 
     // 특정 챌린지 조회
-    fun getChallenge(challengeId: Long): Call<Challenge> =
-        retrofitService.getChallenge(challengeId)
+    fun getChallenge(challengeId: Long): Challenge? =
+        retrofitService.getChallenge(challengeId).execute().body()
 
     // 챌린지 샘플 조회
-    fun getAllSampleChallenges(): Call<List<Challenge>> =
-        retrofitService.getAllSampleChallenges()
+    fun getAllSampleChallenges(): List<Challenge>? =
+        retrofitService.getAllSampleChallenges().execute().body()
 
     // 챌린지 미션 조회
-    fun getAllMissions(challengeId: Long): Call<List<Mission>> =
-        retrofitService.getAllMissions(challengeId)
+    fun getAllMissions(challengeId: Long): List<Mission>? =
+        retrofitService.getAllMissions(challengeId).execute().body()
 
     // 챌린지 미션 인증(사진 업로드)
     fun completeMission(
@@ -33,6 +32,6 @@ class ChallengeDataSource {
         missionId: Long,
         image: Bitmap,
         memo: String?
-    ): Call<Mission> =
-        retrofitService.completeMission(challengeId, missionId, image, memo)
+    ): Mission? =
+        retrofitService.completeMission(challengeId, missionId, image, memo).execute().body()
 }
