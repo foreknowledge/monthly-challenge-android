@@ -16,6 +16,7 @@ class MissionListRecyclerAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onMissionItemClickListener: OnItemClickListener<Mission>? = null
+    var onAddItemClick: (missionList: List<Mission>) -> Unit = {}
 
     fun setOnItemClickListener(listener: (item: Mission) -> Unit) {
         this.onMissionItemClickListener = object : OnItemSingleClickListener<Mission>() {
@@ -34,7 +35,10 @@ class MissionListRecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
             when (holder) {
                 is MissionViewHolder -> holder.bind(missionList[position], editable, onMissionItemClickListener)
-                is AddItemViewHolder -> holder.bind { onAddItemClick() }
+                is AddItemViewHolder -> holder.bind {
+                    addNewMission()
+                    onAddItemClick(missionList)
+                }
                 else -> {
                 }
             }
@@ -50,7 +54,7 @@ class MissionListRecyclerAdapter(
 
     override fun getItemViewType(position: Int) = if (position < missionList.size) VIEW_TYPE_MISSION else VIEW_TYPE_ADD
 
-    private fun onAddItemClick() {
+    private fun addNewMission() {
         missionList.add(Mission(-1, "", false))
 
         val positionToAdd = missionList.size - 1
