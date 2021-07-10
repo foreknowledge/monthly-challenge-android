@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.R
-import com.gdghackathon.monthlychallenges.model.GlobalApp
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

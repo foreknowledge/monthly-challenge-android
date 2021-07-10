@@ -1,9 +1,8 @@
-package com.gdghackathon.monthlychallenges.model
+package com.gdghackathon.monthlychallenges
 
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import com.gdghackathon.monthlychallenges.R
 
 class GlobalApp : Application() {
     companion object {
