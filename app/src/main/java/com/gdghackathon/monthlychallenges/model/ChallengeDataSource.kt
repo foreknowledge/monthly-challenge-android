@@ -7,7 +7,7 @@ class ChallengeDataSource {
         RetrofitClient.getInstance().create(RetrofitService::class.java)
 
     // 챌린지 생성
-    fun createChallenge(name: String, missionList: List<Mission>): Boolean {
+    fun createChallenge(name: String, missionList: List<Mission>): Long {
         retrofitService.createChallenge(name, missionList)
     }
 

@@ -11,7 +11,7 @@ interface RetrofitService {
     fun createChallenge(
         @Field("name") name: String,
         @Field("mission") missionList: List<Mission>
-    ): Call<Challenge>
+    ): Call<Long>
 
     // 챌린지 삭제
     @DELETE("challenge/{challengeId}")
