@@ -8,5 +8,10 @@ class CreateChallengeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_challenge)
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.layout_container, SetChallengeTitleFragment())
+            .commit()
     }
 }
