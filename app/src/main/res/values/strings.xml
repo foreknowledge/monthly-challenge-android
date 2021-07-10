@@ -3,24 +3,16 @@
     <string name="shared_pref_key">com.gdghackathon.monthlychallenges</string>
 
     <string name="str_add_mission">+ 추가</string>
-    
+
     <!-- activity_splash.xml -->
     <string name="splash_challiney_name">챌린이</string>
     <string name="splash_pharse">큰 것을 이루기 위해서는 하루에 하나씩\n작은 것을 이뤄나가는 것이 중요하다.</string>
     <string name="splash_author">- Challiney</string>
- 
+
     <!-- activity_main.xml -->
     <string name="main_title">무기력 극뽁 챌린지</string>
     <string name="main_text">30일의 도전\n소소하지만 확실한 도전을 해볼까요?</string>
     <string name="main_create_challenge_button_text">⬆️ 직접 등록하기</string>
-    <string name="main_button1_text">✨ 소확도</string>
-    <string name="main_button2_text">💪🏻 극뽁</string>
-    <string name="main_button3_text">🏃🏻‍♂️ 운동</string>
-    <string name="main_button4_text">🎨 취미</string>
-    <string name="main_button5_text">🧘🏻‍♀️ 명상</string>
-    <string name="main_button6_text">✍️ 공부</string>
-    <string name="main_button7_text">📖 독서</string>
-    <string name="main_button8_text">🗓 습관</string>
 
     <!-- activity_detail_mission.xml -->
     <string name="mission_date">2021년 7월 11일</string>
@@ -39,4 +31,6 @@
     <string name="write_button">메모 등록</string>
     <string name="write_no_text"><u>메모 안남길래요</u></string>
 
+    <!-- activity_challenge_contents.xml -->
+    <string name="str_stop_challenge"><u>챌린지 중단하기</u></string>
 </resources>
