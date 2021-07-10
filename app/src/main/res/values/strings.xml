@@ -15,4 +15,9 @@
     <string name="main_button6_text">✍️ 공부</string>
     <string name="main_button7_text">📖 독서</string>
     <string name="main_button8_text">🗓 습관</string>
+
+    <!-- activity_detail_mission.xml -->
+    <string name="mission_date">2021년 7월 11일</string>
+    <string name="mission_title">아침밥 먹기</string>
+    <string name="mission_memo">챌린지 성공</string>
 </resources>
