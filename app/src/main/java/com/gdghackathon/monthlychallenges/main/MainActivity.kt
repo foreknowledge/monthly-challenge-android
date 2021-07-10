@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.gdghackathon.monthlychallenges.R
+import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeListViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val challengeList = challengeListViewModel.challengeList.value ?: listOf()
+        val challengeList = challengeListViewModel.challengeList.value
+            ?: listOf(
+                Challenge(1, "소확도", 0),
+                Challenge(2, "극뽁", 0),
+                Challenge(3, "운동", 0),
+            )
         challengeList.forEach {
             Log.d("test", "${it.id}, ${it.name}, ${it.missionCount}")
         }
