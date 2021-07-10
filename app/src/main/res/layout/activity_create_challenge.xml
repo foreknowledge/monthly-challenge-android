@@ -7,10 +7,6 @@
     <FrameLayout
         android:id="@+id/layout_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/fragment_set_challenge_title" />
-
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
