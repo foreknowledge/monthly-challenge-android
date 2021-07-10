@@ -9,7 +9,7 @@ import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.viewmodel.SampleChallengesViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val challengeListViewModel by lazy {
+    private val sampleChallengesViewModel by lazy {
         ViewModelProvider(this).get(SampleChallengesViewModel::class.java)
     }
 
@@ -17,13 +17,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val challengeList = challengeListViewModel.sampleChallenges.value
+        val sampleChallenges = sampleChallengesViewModel.sampleChallenges.value
             ?: listOf(
                 Challenge(1, "소확도", 0),
                 Challenge(2, "극뽁", 0),
                 Challenge(3, "운동", 0),
             )
-        challengeList.forEach {
+        sampleChallenges.forEach {
             Log.d("test", "${it.id}, ${it.name}, ${it.missionCount}")
         }
     }
