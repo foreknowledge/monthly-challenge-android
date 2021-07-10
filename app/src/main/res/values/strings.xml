@@ -33,4 +33,7 @@
 
     <!-- activity_challenge_contents.xml -->
     <string name="str_stop_challenge"><u>챌린지 중단하기</u></string>
+
+    <!-- fragment_set_challenge_missions.xml -->
+    <string name="str_create_challenge">생성하기</string>
 </resources>
