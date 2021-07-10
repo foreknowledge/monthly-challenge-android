@@ -39,7 +39,7 @@ class SetChallengeTitleFragment : Fragment() {
 
                     if (p0.length > 20) {
                         fadeIn(challengeTitleDescription)
-                    } else if (p0.length < 20) {
+                    } else {
                         challengeTitleDescription.visibility = View.GONE
                     }
                 }
