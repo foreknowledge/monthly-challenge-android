@@ -11,4 +11,8 @@ class SampleChallengesViewModel : ViewModel() {
 
     private val _sampleChallenges = MutableLiveData<List<Challenge>>()
     val sampleChallenges: LiveData<List<Challenge>> = _sampleChallenges
+
+    fun loadData(challengeList: List<Challenge>) {
+        _sampleChallenges.value = challengeList
+    }
 }
