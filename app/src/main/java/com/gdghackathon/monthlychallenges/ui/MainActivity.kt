@@ -1,4 +1,4 @@
-package com.gdghackathon.monthlychallenges.main
+package com.gdghackathon.monthlychallenges.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
