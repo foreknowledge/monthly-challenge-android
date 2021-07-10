@@ -40,10 +40,10 @@ class MissionListRecyclerAdapter(
 
     override fun getItemCount() =
             if (editable) {
-                // 편집 가능한 경우 [+ 추가] 아이템 보여주기
+                // 편집 가능한 경우 [+ 추가] 아이템 표시
                 (missionList.size + 1).coerceAtMost(NUM_OF_MISSIONS)
             } else {
-                // 편집 가능한 경우 리스트 아이템만 보여주기
+                // 편집 가능한 경우 [+ 추가] 아이템 표시 X
                 missionList.size
             }
 
