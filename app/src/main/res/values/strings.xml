@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Monthly Challenges</string>
+
+    <string name="str_add_mission">+ 추가</string>
 </resources>
