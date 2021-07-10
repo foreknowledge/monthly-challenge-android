@@ -15,6 +15,7 @@
         tools:context=".ui.ChallengeContentsActivity">
 
         <ImageButton
+            android:id="@+id/button_share"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="17dp"
@@ -36,12 +37,11 @@
             android:id="@+id/imageview_challiney"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="6dp"
             android:src="@drawable/challiney_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:set_image="@{challenge.missionCount}" />
+            app:layout_constraintTop_toBottomOf="@id/button_share" />
 
         <TextView
             android:id="@+id/tv_mission_number"
@@ -65,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:text="@{challenge.name}"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_mission_number" />
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="@color/color_c7c7c7"
+            android:textColor="@color/color_other_grey_1"
             android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mission_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="3dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_stop_challenge"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,9 +97,9 @@
             android:id="@+id/tv_stop_challenge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="43dp"
             android:text="@string/str_stop_challenge"
-            android:textColor="@color/color_555555"
+            android:textColor="@color/color_other_grey_2"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
