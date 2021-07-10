@@ -3,6 +3,7 @@ package com.gdghackathon.monthlychallenges.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.databinding.ItemAddBinding
 import com.gdghackathon.monthlychallenges.databinding.ItemMissionBinding
 import com.gdghackathon.monthlychallenges.listener.OnItemClickListener
@@ -60,8 +61,6 @@ class MissionListRecyclerAdapter(
     }
 
     companion object {
-        private const val NUM_OF_MISSIONS = 30
-
         private const val VIEW_TYPE_MISSION = 1
         private const val VIEW_TYPE_ADD = 2
     }
