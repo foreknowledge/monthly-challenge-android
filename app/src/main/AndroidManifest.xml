@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.CreateChallengeActivity" />
+        <activity android:name=".ui.TestActivity" />
     </application>
 
 </manifest>
