@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".ui.CreateChallengeActivity" />
-        <activity android:name=".ui.TestActivity" />
         <activity android:name=".ui.ChallengeContentsActivity"/>
     </application>
 
