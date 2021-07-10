@@ -33,6 +33,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(this, {
+            binding.challenge = it
+
             val missionList = it.missionList?.toMutableList() ?: mutableListOf()
             binding.missionList.adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
                 setOnItemClickListener {
