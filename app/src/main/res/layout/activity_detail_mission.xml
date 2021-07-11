@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/challiney_gray"
+        android:src="@drawable/no_image"
         android:background="@color/color_less_light_grey"
         app:layout_constraintTop_toBottomOf="@id/textview_date" />
 
