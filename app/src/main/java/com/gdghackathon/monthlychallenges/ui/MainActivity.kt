@@ -3,10 +3,13 @@ package com.gdghackathon.monthlychallenges.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.gdghackathon.monthlychallenges.R
+import com.gdghackathon.monthlychallenges.SAMPLE_CHALLENGE_ID
+import com.gdghackathon.monthlychallenges.SAMPLE_CHALLENGE_TITLE
 import com.gdghackathon.monthlychallenges.databinding.ActivityMainBinding
 import com.gdghackathon.monthlychallenges.viewmodel.SampleChallengesViewModel
 
@@ -36,7 +39,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(this, CreateChallengeActivity::class.java)
                 startActivity(intent)
             }
-            R.id.button_1 -> { }
+            R.id.button_1 -> {
+                val sampleChallengeId = v.tag as Long
+                val sampleChallengeTitle = (v as? Button)?.text
+                val intent = Intent(this, CreateChallengeActivity::class.java)
+                intent.putExtra(SAMPLE_CHALLENGE_ID, sampleChallengeId)
+                intent.putExtra(SAMPLE_CHALLENGE_TITLE, sampleChallengeTitle)
+                startActivity(intent)
+            }
             else -> { }
         }
     }
