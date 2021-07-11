@@ -61,6 +61,7 @@ class SetChallengeMissionsFragment(
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(viewLifecycleOwner, { challenge ->
             binding.challenge = challenge
+            binding.buttonCreateChallenge.isEnabled = (challenge.missionList?.size ?: 0) >= NUM_OF_MISSIONS
 
             with (binding.challengeContents.missionList) {
                 val missionList = challenge.missionList.toMutableList()
