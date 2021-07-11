@@ -6,8 +6,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_1
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_2
-import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
+import com.gdghackathon.monthlychallenges.model.Challenge
 
 @BindingAdapter("set_startDate")
 fun TextView.setStartDate(date: String?) {
@@ -19,9 +19,10 @@ fun TextView.setStartDate(date: String?) {
 }
 
 @BindingAdapter("set_missionCount")
-fun TextView.setMissionCount(count: Int?) {
-    count?.let {
-        val missionCount = "$count/$NUM_OF_MISSIONS"
+fun TextView.setMissionCount(challenge: Challenge?) {
+    challenge?.let {
+        val missionSize = it.missionList?.size ?: 0
+        val missionCount = "${it.missionCount}/$missionSize"
         text = missionCount
     }
 }

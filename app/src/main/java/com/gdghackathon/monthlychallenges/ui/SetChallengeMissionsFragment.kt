@@ -12,7 +12,6 @@ import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.Challenge
-import com.gdghackathon.monthlychallenges.model.Mission
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
@@ -66,7 +65,10 @@ class SetChallengeMissionsFragment(
             with (binding.challengeContents.missionList) {
                 val missionList = challenge.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList).apply {
-                    onAddItemClick = { updateUI(it) }
+                    onAddItemClick = {
+                        challenge.missionList = it
+                        updateUI(challenge)
+                    }
                 }
             }
         })
@@ -75,8 +77,9 @@ class SetChallengeMissionsFragment(
         })
     }
 
-    private fun updateUI(missionList: List<Mission>) {
-        binding.challengeContents.tvMissionNumber.setMissionCount(missionList.size)
+    private fun updateUI(challenge: Challenge) {
+        val missionList = challenge.missionList ?: listOf()
+        binding.challengeContents.tvMissionNumber.setMissionCount(challenge)
         binding.buttonCreateChallenge.isEnabled = missionList.size >= NUM_OF_MISSIONS
 
         binding.challenge?.missionList = missionList
