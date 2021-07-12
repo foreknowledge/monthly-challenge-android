@@ -1,5 +1,6 @@
 package com.gdghackathon.monthlychallenges.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,8 +31,9 @@ class ChallengeViewModel : ViewModel() {
 
     fun createChallenge(challenge: Challenge) = viewModelScope.launch {
         if (challenge.missionList.size == NUM_OF_MISSIONS) {
-            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
-            _challengeId.value = challengeId
+            Log.d("test", "$challenge")
+//            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
+//            _challengeId.value = challengeId
         }
     }
 }
