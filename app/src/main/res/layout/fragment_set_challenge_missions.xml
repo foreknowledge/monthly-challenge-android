@@ -42,10 +42,10 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/button_background_color_action"
-            android:text="@string/str_create_challenge"
-            android:textSize="17sp"
-            android:textColor="#ffffff"
             android:enabled="false"
+            android:text="@string/str_create_challenge"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
