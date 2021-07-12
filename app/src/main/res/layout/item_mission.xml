@@ -3,12 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="editable"
             type="Boolean" />
+
         <variable
             name="mission"
             type="com.gdghackathon.monthlychallenges.model.Mission" />
+
         <variable
             name="listener"
             type="com.gdghackathon.monthlychallenges.listener.OnItemClickListener" />
@@ -37,13 +40,14 @@
             android:background="@android:color/transparent"
             android:backgroundTint="@color/color_light_grey"
             android:focusable="@{editable}"
+            android:fontFamily="@font/nanum_jang_mi_ce"
             android:gravity="center"
             android:inputType="textNoSuggestions|textMultiLine"
             android:maxLength="25"
             android:onClick="@{() -> listener.onClick(mission)}"
             android:text="@{mission.name}"
             android:textColor="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
