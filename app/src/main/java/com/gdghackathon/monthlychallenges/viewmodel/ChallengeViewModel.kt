@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.ChallengeRepository
-import com.gdghackathon.monthlychallenges.model.Mission
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel : ViewModel() {
@@ -29,18 +28,7 @@ class ChallengeViewModel : ViewModel() {
         }
     }
 
-    fun setTitle(title: String) {
-        _challenge.value = Challenge(name = title)
-    }
-
-    fun setMissionList(missionList: List<Mission>) {
-        _challenge.value = challenge.value?.copy()?.apply {
-            this.missionList = missionList
-        }
-    }
-
-    fun createChallenge() = viewModelScope.launch {
-        val challenge = challenge.value ?: return@launch
+    fun createChallenge(challenge: Challenge) = viewModelScope.launch {
         if (challenge.missionList.size == NUM_OF_MISSIONS) {
             val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
             _challengeId.value = challengeId
