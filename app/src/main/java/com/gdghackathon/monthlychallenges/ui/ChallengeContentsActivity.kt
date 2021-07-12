@@ -3,7 +3,10 @@ package com.gdghackathon.monthlychallenges.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -40,7 +43,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             binding.challenge = it
 
             with (binding.challengeContents.missionList) {
-                val missionList = it.missionList?.toMutableList() ?: mutableListOf()
+                val missionList = it.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
                     setOnItemClickListener { mission ->
                         // 인증 or 자세히 보기

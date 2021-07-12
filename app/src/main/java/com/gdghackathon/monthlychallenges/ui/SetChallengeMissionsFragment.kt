@@ -59,7 +59,7 @@ class SetChallengeMissionsFragment : Fragment() {
             binding.challenge = challenge
 
             with (binding.challengeContents.missionList) {
-                val missionList = challenge.missionList?.toMutableList() ?: mutableListOf()
+                val missionList = challenge.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList).apply {
                     onAddItemClick = { updateUI(it) }
                 }

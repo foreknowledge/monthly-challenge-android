@@ -10,7 +10,7 @@ data class Challenge(
         @SerializedName("create_date")
         var createDate: String = "",
         @SerializedName("ownMissions")
-        var missionList: List<Mission>? = null
+        var missionList: List<Mission> = listOf()
 )
 
 data class Mission(
