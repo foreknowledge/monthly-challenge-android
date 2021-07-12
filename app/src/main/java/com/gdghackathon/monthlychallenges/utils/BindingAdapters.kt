@@ -21,8 +21,7 @@ fun TextView.setStartDate(date: String?) {
 @BindingAdapter("set_missionCount")
 fun TextView.setMissionCount(challenge: Challenge?) {
     challenge?.let {
-        val missionSize = it.missionList?.size ?: 0
-        val missionCount = "${it.missionCount}/$missionSize"
+        val missionCount = "${it.missionCount}/${it.missionList.size}"
         text = missionCount
     }
 }

@@ -29,8 +29,8 @@ class ChallengeViewModel : ViewModel() {
     }
 
     fun createChallenge(challenge: Challenge) = viewModelScope.launch {
-        if (challenge.missionList?.size == NUM_OF_MISSIONS) {
-            val challengeId = repository.createChallenge(challenge.name, challenge.missionList!!)
+        if (challenge.missionList.size == NUM_OF_MISSIONS) {
+            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
             _challengeId.value = challengeId
         }
     }
