@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
+import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
 class ChallengeContentsActivity : AppCompatActivity() {

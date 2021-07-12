@@ -13,6 +13,7 @@ import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.Mission
+import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
