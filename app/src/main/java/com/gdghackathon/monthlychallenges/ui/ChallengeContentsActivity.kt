@@ -41,7 +41,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(this, {
-            binding.challenge = it
+            binding.challengeContents.challenge = it
 
             with (binding.challengeContents.missionList) {
                 val missionList = it.missionList.toMutableList()

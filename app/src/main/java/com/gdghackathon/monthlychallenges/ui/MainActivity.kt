@@ -24,13 +24,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = sampleChallengesViewModel
+
         binding.buttonCreateChallenge.setOnClickListener(this)
         binding.button1.setOnClickListener(this)
 
         sampleChallengesViewModel.loadData()
-        sampleChallengesViewModel.sampleChallenges.observe(this, {
-            binding.sampleList = it
-        })
     }
 
     override fun onClick(v: View?) {

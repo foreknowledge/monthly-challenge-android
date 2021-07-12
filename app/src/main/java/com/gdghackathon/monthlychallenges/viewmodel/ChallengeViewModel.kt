@@ -1,5 +1,6 @@
 package com.gdghackathon.monthlychallenges.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,20 +19,21 @@ class ChallengeViewModel : ViewModel() {
     private val _challengeId = MutableLiveData<Long>()
     val challengeId: LiveData<Long> = _challengeId
 
-    fun loadData(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
-        repository.getChallenge(challengeId)?.missionList?.let {
-            _challenge.value = Challenge(name = challengeTitle, missionList = it)
-        }
+    fun loadData(challengeId: Long) = viewModelScope.launch {
+        _challenge.value = repository.getChallenge(challengeId)
     }
 
-    fun setChallengeTitle(title: String) {
-        _challenge.value = Challenge().apply { name = title }
+    fun loadMissions(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
+        repository.getChallenge(challengeId)?.let {
+            _challenge.value = Challenge(name = challengeTitle, missionList = it.missionList)
+        }
     }
 
     fun createChallenge(challenge: Challenge) = viewModelScope.launch {
         if (challenge.missionList.size == NUM_OF_MISSIONS) {
-            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
-            _challengeId.value = challengeId
+            Log.d("test", "$challenge")
+//            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
+//            _challengeId.value = challengeId
         }
     }
 }

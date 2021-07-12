@@ -13,16 +13,19 @@ import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
+import com.gdghackathon.monthlychallenges.utils.setImage
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
 class SetChallengeMissionsFragment(
-        private val sampleChallengeId: Long,
-        private val sampleChallengeTitle: String,
+        sampleChallengeId: Long,
+        sampleChallengeTitle: String,
 ) : Fragment() {
     private val challengeViewModel: ChallengeViewModel by lazy {
         ViewModelProvider(this).get(ChallengeViewModel::class.java)
     }
+
+    private var currentChallenge = Challenge(id = sampleChallengeId, name = sampleChallengeTitle)
 
     private lateinit var binding: FragmentSetChallengeMissionsBinding
 
@@ -34,10 +37,11 @@ class SetChallengeMissionsFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (sampleChallengeId > -1) {
-            challengeViewModel.loadData(sampleChallengeId, sampleChallengeTitle)
+        if (currentChallenge.id > -1) {
+            challengeViewModel.loadMissions(currentChallenge.id, currentChallenge.name)
         } else {
-            challengeViewModel.setChallengeTitle(sampleChallengeTitle)
+            binding.challengeContents.challenge = currentChallenge
+            initMissionListRecyclerView()
         }
 
         setupUI()
@@ -49,8 +53,7 @@ class SetChallengeMissionsFragment(
         binding.challengeContents.missionList.layoutManager = GridLayoutManager(context, 5)
 
         binding.buttonCreateChallenge.setOnClickListener {
-            val challenge = binding.challenge ?: Challenge()
-            challengeViewModel.createChallenge(challenge)
+            challengeViewModel.createChallenge(currentChallenge)
         }
 
         binding.buttonLeave.setOnClickListener {
@@ -60,29 +63,35 @@ class SetChallengeMissionsFragment(
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(viewLifecycleOwner, { challenge ->
-            binding.challenge = challenge
+            currentChallenge = challenge
+            binding.challengeContents.challenge = challenge
             binding.buttonCreateChallenge.isEnabled = challenge.missionList.size >= NUM_OF_MISSIONS
 
-            with (binding.challengeContents.missionList) {
-                val missionList = challenge.missionList.toMutableList()
-                adapter = MissionListRecyclerAdapter(missionList).apply {
-                    onAddItemClick = {
-                        challenge.missionList = it
-                        updateUI(challenge)
-                    }
-                }
-            }
+            initMissionListRecyclerView()
         })
         challengeViewModel.challengeId.observe(viewLifecycleOwner, {
             // challengeId 설정 & 액티비티 이동
         })
     }
 
-    private fun updateUI(challenge: Challenge) {
-        val missionList = challenge.missionList
-        binding.challengeContents.tvMissionNumber.setMissionCount(challenge)
-        binding.buttonCreateChallenge.isEnabled = missionList.size >= NUM_OF_MISSIONS
+    private fun initMissionListRecyclerView() {
+        with (binding.challengeContents.missionList) {
+            val missionList = currentChallenge.missionList.toMutableList()
+            adapter = MissionListRecyclerAdapter(missionList).apply {
+                onAddItemClick = {
+                    currentChallenge.missionList = it
+                    updateUI()
+                }
+            }
+        }
+    }
 
-        binding.challenge?.missionList = missionList
+    private fun updateUI() {
+        with (binding.challengeContents) {
+            imageviewChalliney.setImage(currentChallenge.missionCount)
+            tvMissionNumber.setMissionCount(currentChallenge)
+        }
+
+        binding.buttonCreateChallenge.isEnabled = currentChallenge.missionList.size >= NUM_OF_MISSIONS
     }
 }
