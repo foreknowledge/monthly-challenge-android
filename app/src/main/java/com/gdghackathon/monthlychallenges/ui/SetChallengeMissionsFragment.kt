@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
-import com.gdghackathon.monthlychallenges.model.Challenge
+import com.gdghackathon.monthlychallenges.model.Mission
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
-import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
 class SetChallengeMissionsFragment(
@@ -35,9 +34,9 @@ class SetChallengeMissionsFragment(
         super.onViewCreated(view, savedInstanceState)
 
         if (sampleChallengeId > -1) {
-            challengeViewModel.loadData(sampleChallengeId, sampleChallengeTitle)
+            challengeViewModel.loadMissions(sampleChallengeId, sampleChallengeTitle)
         } else {
-            challengeViewModel.setChallengeTitle(sampleChallengeTitle)
+            challengeViewModel.setTitle(sampleChallengeTitle)
         }
 
         setupUI()
@@ -49,8 +48,7 @@ class SetChallengeMissionsFragment(
         binding.challengeContents.missionList.layoutManager = GridLayoutManager(context, 5)
 
         binding.buttonCreateChallenge.setOnClickListener {
-            val challenge = binding.challenge ?: Challenge()
-            challengeViewModel.createChallenge(challenge)
+            challengeViewModel.createChallenge()
         }
 
         binding.buttonLeave.setOnClickListener {
@@ -60,15 +58,15 @@ class SetChallengeMissionsFragment(
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(viewLifecycleOwner, { challenge ->
-            binding.challenge = challenge
+            binding.challengeContents.challenge = challenge
             binding.buttonCreateChallenge.isEnabled = challenge.missionList.size >= NUM_OF_MISSIONS
 
             with (binding.challengeContents.missionList) {
                 val missionList = challenge.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList).apply {
                     onAddItemClick = {
-                        challenge.missionList = it
-                        updateUI(challenge)
+                        challengeViewModel.setMissionList(it)
+                        updateUI(it)
                     }
                 }
             }
@@ -78,11 +76,7 @@ class SetChallengeMissionsFragment(
         })
     }
 
-    private fun updateUI(challenge: Challenge) {
-        val missionList = challenge.missionList
-        binding.challengeContents.tvMissionNumber.setMissionCount(challenge)
+    private fun updateUI(missionList: List<Mission>) {
         binding.buttonCreateChallenge.isEnabled = missionList.size >= NUM_OF_MISSIONS
-
-        binding.challenge?.missionList = missionList
     }
 }

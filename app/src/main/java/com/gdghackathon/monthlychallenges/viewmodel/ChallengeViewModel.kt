@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.ChallengeRepository
+import com.gdghackathon.monthlychallenges.model.Mission
 import kotlinx.coroutines.launch
 
 class ChallengeViewModel : ViewModel() {
@@ -18,17 +19,28 @@ class ChallengeViewModel : ViewModel() {
     private val _challengeId = MutableLiveData<Long>()
     val challengeId: LiveData<Long> = _challengeId
 
-    fun loadData(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
-        repository.getChallenge(challengeId)?.missionList?.let {
-            _challenge.value = Challenge(name = challengeTitle, missionList = it)
+    fun loadData(challengeId: Long) = viewModelScope.launch {
+        _challenge.value = repository.getChallenge(challengeId)
+    }
+
+    fun loadMissions(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
+        repository.getChallenge(challengeId)?.let {
+            _challenge.value = Challenge(name = challengeTitle, missionList = it.missionList)
         }
     }
 
-    fun setChallengeTitle(title: String) {
-        _challenge.value = Challenge().apply { name = title }
+    fun setTitle(title: String) {
+        _challenge.value = Challenge(name = title)
     }
 
-    fun createChallenge(challenge: Challenge) = viewModelScope.launch {
+    fun setMissionList(missionList: List<Mission>) {
+        _challenge.value = challenge.value?.copy()?.apply {
+            this.missionList = missionList
+        }
+    }
+
+    fun createChallenge() = viewModelScope.launch {
+        val challenge = challenge.value ?: return@launch
         if (challenge.missionList.size == NUM_OF_MISSIONS) {
             val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
             _challengeId.value = challengeId
