@@ -1,4 +1,4 @@
-package com.gdghackathon.monthlychallenges.ui
+package com.gdghackathon.monthlychallenges.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.gdghackathon.monthlychallenges.databinding.ItemAddBinding

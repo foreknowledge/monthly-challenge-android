@@ -13,6 +13,7 @@ import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.Mission
+import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
@@ -59,7 +60,7 @@ class SetChallengeMissionsFragment : Fragment() {
             binding.challenge = challenge
 
             with (binding.challengeContents.missionList) {
-                val missionList = challenge.missionList?.toMutableList() ?: mutableListOf()
+                val missionList = challenge.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList).apply {
                     onAddItemClick = { updateUI(it) }
                 }

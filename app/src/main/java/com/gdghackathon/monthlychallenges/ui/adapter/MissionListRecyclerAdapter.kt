@@ -1,4 +1,4 @@
-package com.gdghackathon.monthlychallenges.ui
+package com.gdghackathon.monthlychallenges.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

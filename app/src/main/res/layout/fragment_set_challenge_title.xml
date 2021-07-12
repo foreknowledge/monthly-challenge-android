@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,11 +36,11 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/dr_rect_rounded"
         android:backgroundTint="@color/color_light_grey"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:maxLines="1"
-        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/textview_text" />
 
     <TextView
@@ -50,29 +49,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="챌린지 타이틀은 20자 이내로 작성해 주세요."
-        android:textColor="@android:color/holo_red_dark"
         android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/edittext_challenge_title" />
 
     <androidx.appcompat.widget.AppCompatButton
-        style="?android:attr/borderlessButtonStyle"
         android:id="@+id/button_confirm_challenge_title"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/button_background_color_action"
-        android:text="확인"
-        android:textSize="17sp"
-        android:textColor="#ffffff"
         android:enabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:text="확인"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14"/>
+        app:layout_constraintGuide_percent="0.14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

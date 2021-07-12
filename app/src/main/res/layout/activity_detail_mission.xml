@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,8 +11,8 @@
         android:layout_height="30dp"
         android:layout_marginStart="22dp"
         android:background="@drawable/ic_share_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imagebutton_close"
@@ -21,27 +20,27 @@
         android:layout_height="30dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/ic_close"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textview_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mission_date"
-        android:textSize="17sp"
         android:textColor="@color/color_dark_grey"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="17sp"
         app:layout_constraintLeft_toRightOf="@id/imagebutton_share"
-        app:layout_constraintRight_toLeftOf="@id/imagebutton_close" />
+        app:layout_constraintRight_toLeftOf="@id/imagebutton_close"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageview_mission_image"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/no_image"
         android:background="@color/color_less_light_grey"
+        android:src="@drawable/no_image"
         app:layout_constraintTop_toBottomOf="@id/textview_date" />
 
     <TextView
@@ -51,22 +50,22 @@
         android:layout_marginTop="15dp"
         android:text="@string/mission_title"
         android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/imageview_mission_image"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageview_mission_image" />
 
     <TextView
         android:id="@+id/textview_mission_memo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:maxLength="200"
         android:paddingHorizontal="22dp"
         android:text="@string/mission_memo"
-        android:textSize="20sp"
         android:textAlignment="center"
-        android:maxLength="200"
-        app:layout_constraintTop_toBottomOf="@id/textview_mission_title"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_mission_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
