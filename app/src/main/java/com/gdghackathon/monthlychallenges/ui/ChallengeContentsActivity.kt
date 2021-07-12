@@ -28,7 +28,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_challenge_contents)
 
-        challengeViewModel.loadData(1)
+//        challengeViewModel.loadData(1)
 
         setupUI()
         subscribeUI()

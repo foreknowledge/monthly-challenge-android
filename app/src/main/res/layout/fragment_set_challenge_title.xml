@@ -1,77 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingHorizontal="22dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/textview_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="직접 도전 등록하기"
-        android:textColor="#444444"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline1" />
-
-    <TextView
-        android:id="@+id/textview_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="앞으로 30일 동안 함께할 \n챌린지 타이틀을 작성해주세요."
-        android:textAlignment="center"
-        android:textColor="#444444"
-        android:textSize="17sp"
-        app:layout_constraintLeft_toLeftOf="@id/textview_title"
-        app:layout_constraintRight_toRightOf="@id/textview_title"
-        app:layout_constraintTop_toBottomOf="@id/textview_title" />
-
-    <EditText
-        android:id="@+id/edittext_challenge_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/dr_rect_rounded"
-        android:backgroundTint="@color/color_light_grey"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAlignment="center"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/textview_text" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textview_challenge_title_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="챌린지 타이틀은 20자 이내로 작성해 주세요."
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/edittext_challenge_title" />
+        <ImageButton
+            android:id="@+id/button_leave"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="17dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_leave"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_confirm_challenge_title"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/button_background_color_action"
-        android:enabled="false"
-        android:text="확인"
-        android:textColor="#ffffff"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_title"
+            android:textColor="@color/color_dark_grey"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline1" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.14" />
+        <TextView
+            android:id="@+id/textview_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_description"
+            android:textAlignment="center"
+            android:textColor="@color/color_dark_grey"
+            android:textSize="17sp"
+            app:layout_constraintLeft_toLeftOf="@id/textview_title"
+            app:layout_constraintRight_toRightOf="@id/textview_title"
+            app:layout_constraintTop_toBottomOf="@id/textview_title" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/edittext_challenge_title"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/dr_rect_rounded"
+            android:backgroundTint="@color/color_light_grey"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_text" />
+
+        <TextView
+            android:id="@+id/textview_challenge_title_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/create_warning_desc"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edittext_challenge_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_confirm_challenge_title"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_background_color_action"
+            android:enabled="false"
+            android:text="@string/create_confirm"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.14" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

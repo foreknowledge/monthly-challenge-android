@@ -12,12 +12,14 @@ import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.Challenge
-import com.gdghackathon.monthlychallenges.model.Mission
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
-class SetChallengeMissionsFragment : Fragment() {
+class SetChallengeMissionsFragment(
+        private val sampleChallengeId: Long,
+        private val sampleChallengeTitle: String,
+) : Fragment() {
     private val challengeViewModel: ChallengeViewModel by lazy {
         ViewModelProvider(this).get(ChallengeViewModel::class.java)
     }
@@ -32,14 +34,11 @@ class SetChallengeMissionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO - 초기 데이터 세팅
-        //  1. 직접 등록 - 넘어온 title 있으면 세팅
-        //  2. 샘플 등록 - challengeId 있으면 조회해서 세팅
-//        val challengeId = 1L
-        val title = "소확행"
-
-//        challengeViewModel.loadData(challengeId)
-        challengeViewModel.setChallengeTitle(title)
+        if (sampleChallengeId > -1) {
+            challengeViewModel.loadData(sampleChallengeId, sampleChallengeTitle)
+        } else {
+            challengeViewModel.setChallengeTitle(sampleChallengeTitle)
+        }
 
         setupUI()
         subscribeUI()
@@ -53,16 +52,24 @@ class SetChallengeMissionsFragment : Fragment() {
             val challenge = binding.challenge ?: Challenge()
             challengeViewModel.createChallenge(challenge)
         }
+
+        binding.buttonLeave.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(viewLifecycleOwner, { challenge ->
             binding.challenge = challenge
+            binding.buttonCreateChallenge.isEnabled = challenge.missionList.size >= NUM_OF_MISSIONS
 
             with (binding.challengeContents.missionList) {
                 val missionList = challenge.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList).apply {
-                    onAddItemClick = { updateUI(it) }
+                    onAddItemClick = {
+                        challenge.missionList = it
+                        updateUI(challenge)
+                    }
                 }
             }
         })
@@ -71,8 +78,9 @@ class SetChallengeMissionsFragment : Fragment() {
         })
     }
 
-    private fun updateUI(missionList: List<Mission>) {
-        binding.challengeContents.tvMissionNumber.setMissionCount(missionList.size)
+    private fun updateUI(challenge: Challenge) {
+        val missionList = challenge.missionList
+        binding.challengeContents.tvMissionNumber.setMissionCount(challenge)
         binding.buttonCreateChallenge.isEnabled = missionList.size >= NUM_OF_MISSIONS
 
         binding.challenge?.missionList = missionList

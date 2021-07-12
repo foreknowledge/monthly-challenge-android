@@ -14,6 +14,12 @@
     <string name="main_text">30일의 도전\n소소하지만 확실한 도전을 해볼까요?</string>
     <string name="main_create_challenge_button_text">⬆️ 직접 등록하기</string>
 
+    <!-- activity_create_challenge.xml -->
+    <string name="create_title">직접 도전 등록하기</string>
+    <string name="create_description">앞으로 30일 동안 함께할\n챌린지 타이틀을 작성해주세요.</string>
+    <string name="create_warning_desc">챌린지 타이틀은 20자 이내로 작성해 주세요.</string>
+    <string name="create_confirm">확인</string>
+
     <!-- activity_detail_mission.xml -->
     <string name="mission_date">2021년 7월 11일</string>
     <string name="mission_title">아침밥 먹기</string>

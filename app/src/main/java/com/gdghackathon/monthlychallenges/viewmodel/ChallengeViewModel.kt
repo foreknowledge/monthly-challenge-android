@@ -18,9 +18,10 @@ class ChallengeViewModel : ViewModel() {
     private val _challengeId = MutableLiveData<Long>()
     val challengeId: LiveData<Long> = _challengeId
 
-    fun loadData(challengeId: Long) = viewModelScope.launch {
-        val challenge = repository.getChallenge(challengeId)
-        _challenge.value = challenge
+    fun loadData(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
+        repository.getChallenge(challengeId)?.missionList?.let {
+            _challenge.value = Challenge(name = challengeTitle, missionList = it)
+        }
     }
 
     fun setChallengeTitle(title: String) {
@@ -28,8 +29,8 @@ class ChallengeViewModel : ViewModel() {
     }
 
     fun createChallenge(challenge: Challenge) = viewModelScope.launch {
-        if (challenge.missionList?.size == NUM_OF_MISSIONS) {
-            val challengeId = repository.createChallenge(challenge.name, challenge.missionList!!)
+        if (challenge.missionList.size == NUM_OF_MISSIONS) {
+            val challengeId = repository.createChallenge(challenge.name, challenge.missionList)
             _challengeId.value = challengeId
         }
     }
