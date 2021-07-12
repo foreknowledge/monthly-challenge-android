@@ -12,7 +12,10 @@ import androidx.fragment.app.Fragment
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeTitleBinding
 
-class SetChallengeTitleFragment : Fragment() {
+class SetChallengeTitleFragment(
+        private val sampleChallengeId: Long,
+        private val sampleChallengeTitle: String
+) : Fragment() {
     private var shortAnimationDuration: Int = 0
 
     private lateinit var binding: FragmentSetChallengeTitleBinding
@@ -27,6 +30,11 @@ class SetChallengeTitleFragment : Fragment() {
 
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
+        if (sampleChallengeTitle.isNotEmpty()) {
+            binding.buttonConfirmChallengeTitle.isEnabled = true
+        }
+
+        binding.edittextChallengeTitle.setText(sampleChallengeTitle)
         binding.edittextChallengeTitle.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0 != null) {
@@ -43,6 +51,12 @@ class SetChallengeTitleFragment : Fragment() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
             override fun afterTextChanged(p0: Editable?) { }
         })
+
+        binding.buttonConfirmChallengeTitle.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                    .replace(R.id.layout_container, SetChallengeMissionsFragment(sampleChallengeId, sampleChallengeTitle))
+                    .commit()
+        }
 
         binding.buttonLeave.setOnClickListener {
             activity?.onBackPressed()
