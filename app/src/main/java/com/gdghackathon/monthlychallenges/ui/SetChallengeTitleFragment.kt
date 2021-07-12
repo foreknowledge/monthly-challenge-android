@@ -53,8 +53,9 @@ class SetChallengeTitleFragment(
         })
 
         binding.buttonConfirmChallengeTitle.setOnClickListener {
+            val challengeTitle = binding.edittextChallengeTitle.text.toString()
             parentFragmentManager.beginTransaction()
-                    .replace(R.id.layout_container, SetChallengeMissionsFragment(sampleChallengeId, sampleChallengeTitle))
+                    .replace(R.id.layout_container, SetChallengeMissionsFragment(sampleChallengeId, challengeTitle))
                     .commit()
         }
 

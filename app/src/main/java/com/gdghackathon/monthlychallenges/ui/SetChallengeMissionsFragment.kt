@@ -35,7 +35,7 @@ class SetChallengeMissionsFragment(
         super.onViewCreated(view, savedInstanceState)
 
         if (sampleChallengeId > -1) {
-            challengeViewModel.loadData(sampleChallengeId)
+            challengeViewModel.loadData(sampleChallengeId, sampleChallengeTitle)
         } else {
             challengeViewModel.setChallengeTitle(sampleChallengeTitle)
         }
