@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
 import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.R
 
@@ -24,7 +25,9 @@ class SplashActivity : AppCompatActivity() {
             val intent = if (GlobalApp.challengeId == -1L) {
                 Intent(this, MainActivity::class.java)
             } else {
-                Intent(this, ChallengeContentsActivity::class.java)
+                Intent(this, ChallengeContentsActivity::class.java).apply {
+                    putExtra(EXTRA_CHALLENGE_ID, GlobalApp.challengeId)
+                }
             }
 
             startActivity(intent)
