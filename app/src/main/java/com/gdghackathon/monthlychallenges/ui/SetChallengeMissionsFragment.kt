@@ -16,7 +16,7 @@ import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
 import com.gdghackathon.monthlychallenges.model.data.Challenge
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
-import com.gdghackathon.monthlychallenges.utils.setImage
+import com.gdghackathon.monthlychallenges.utils.changeImage
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
@@ -95,7 +95,7 @@ class SetChallengeMissionsFragment(
 
     private fun updateUI() {
         with (binding.challengeContents) {
-            imageviewChalliney.setImage(currentChallenge.missionCount)
+            imageviewChalliney.changeImage(currentChallenge.missionCount)
             tvMissionNumber.setMissionCount(currentChallenge)
         }
 

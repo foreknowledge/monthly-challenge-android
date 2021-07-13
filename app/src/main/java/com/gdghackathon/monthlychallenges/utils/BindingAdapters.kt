@@ -26,12 +26,14 @@ fun TextView.setMissionCount(challenge: Challenge?) {
     }
 }
 
-@BindingAdapter("set_image")
-fun ImageView.setImage(count: Int?) {
+@BindingAdapter("change_image")
+fun ImageView.changeImage(count: Int?) {
     count?.let {
-        val resId = if (count <= BOUNDARY_CHALLINEY_1) R.drawable.challiney_1
-        else if (count <= BOUNDARY_CHALLINEY_2) R.drawable.challiney_2
-        else R.drawable.challiney_3
+        val resId = when {
+            it <= BOUNDARY_CHALLINEY_1 -> R.drawable.challiney_1
+            it <= BOUNDARY_CHALLINEY_2 -> R.drawable.challiney_2
+            else -> R.drawable.challiney_3
+        }
 
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, resId, null))
     }
