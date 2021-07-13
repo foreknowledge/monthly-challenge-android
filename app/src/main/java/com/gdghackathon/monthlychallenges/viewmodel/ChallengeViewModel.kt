@@ -23,7 +23,7 @@ class ChallengeViewModel : ViewModel() {
     }
 
     fun loadMissions(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
-        repository.getChallenge(challengeId)?.let {
+        repository.getChallenge(challengeId).let {
             _challenge.value = Challenge(name = challengeTitle, missionList = it.missionList)
         }
     }
