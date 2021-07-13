@@ -4,6 +4,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_1
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_2
 import com.gdghackathon.monthlychallenges.R
@@ -36,5 +37,14 @@ fun ImageView.changeImage(count: Int?) {
         }
 
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, resId, null))
+    }
+}
+
+@BindingAdapter("set_image")
+fun ImageView.setImage(url: String?) {
+    url?.let {
+        Glide.with(this)
+            .load(url)
+            .into(this)
     }
 }
