@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         Log.i("challengeId", GlobalApp.challengeId.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = if (GlobalApp.challengeId == null || GlobalApp.challengeId == -1L) {
+            val intent = if (GlobalApp.challengeId == -1L) {
                 Intent(this, MainActivity::class.java)
             } else {
                 Intent(this, ChallengeContentsActivity::class.java)
