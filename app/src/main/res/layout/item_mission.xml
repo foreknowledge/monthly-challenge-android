@@ -10,7 +10,7 @@
 
         <variable
             name="mission"
-            type="com.gdghackathon.monthlychallenges.model.Mission" />
+            type="com.gdghackathon.monthlychallenges.model.data.Mission" />
 
         <variable
             name="listener"

@@ -8,7 +8,7 @@
 
         <variable
             name="challenge"
-            type="com.gdghackathon.monthlychallenges.model.Challenge" />
+            type="com.gdghackathon.monthlychallenges.model.data.Challenge" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

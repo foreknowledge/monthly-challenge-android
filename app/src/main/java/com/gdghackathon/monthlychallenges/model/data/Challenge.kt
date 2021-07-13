@@ -1,4 +1,4 @@
-package com.gdghackathon.monthlychallenges.model
+package com.gdghackathon.monthlychallenges.model.data
 
 import com.google.gson.annotations.SerializedName
 

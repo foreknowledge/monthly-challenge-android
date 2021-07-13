@@ -1,6 +1,8 @@
 package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
+import com.gdghackathon.monthlychallenges.model.data.Challenge
+import com.gdghackathon.monthlychallenges.model.data.Mission
 import retrofit2.http.*
 
 interface RetrofitService {

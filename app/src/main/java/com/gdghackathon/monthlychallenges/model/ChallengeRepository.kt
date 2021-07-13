@@ -1,6 +1,7 @@
 package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
+import com.gdghackathon.monthlychallenges.model.data.Mission
 
 object ChallengeRepository {
     private val challengeDataSource = ChallengeDataSource()

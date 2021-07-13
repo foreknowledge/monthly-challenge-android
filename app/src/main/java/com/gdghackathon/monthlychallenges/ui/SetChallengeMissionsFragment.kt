@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
-import com.gdghackathon.monthlychallenges.model.Challenge
+import com.gdghackathon.monthlychallenges.model.data.Challenge
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
-import com.gdghackathon.monthlychallenges.utils.setImage
-import com.gdghackathon.monthlychallenges.utils.setMissionCount
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
 class SetChallengeMissionsFragment(

@@ -9,7 +9,7 @@ import com.gdghackathon.monthlychallenges.databinding.ItemMissionBinding
 import com.gdghackathon.monthlychallenges.listener.OnEditTextChangedListener
 import com.gdghackathon.monthlychallenges.listener.OnItemClickListener
 import com.gdghackathon.monthlychallenges.listener.OnItemSingleClickListener
-import com.gdghackathon.monthlychallenges.model.Mission
+import com.gdghackathon.monthlychallenges.model.data.Mission
 
 class MissionListRecyclerAdapter(
         val missionList: MutableList<Mission>,
