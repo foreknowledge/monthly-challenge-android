@@ -28,6 +28,7 @@ class SetChallengeMissionsFragment(
     private var currentChallenge = Challenge(id = sampleChallengeId, name = sampleChallengeTitle)
 
     private lateinit var binding: FragmentSetChallengeMissionsBinding
+    private lateinit var missionListAdapter: MissionListRecyclerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_challenge_missions, container, false)
@@ -53,6 +54,7 @@ class SetChallengeMissionsFragment(
         binding.challengeContents.missionList.layoutManager = GridLayoutManager(context, 5)
 
         binding.buttonCreateChallenge.setOnClickListener {
+            currentChallenge.missionList = missionListAdapter.missionList
             challengeViewModel.createChallenge(currentChallenge)
         }
 
@@ -75,15 +77,14 @@ class SetChallengeMissionsFragment(
     }
 
     private fun initMissionListRecyclerView() {
-        with (binding.challengeContents.missionList) {
-            val missionList = currentChallenge.missionList.toMutableList()
-            adapter = MissionListRecyclerAdapter(missionList).apply {
-                onAddItemClick = {
-                    currentChallenge.missionList = it
-                    updateUI()
-                }
+        val missionList = currentChallenge.missionList.toMutableList()
+        missionListAdapter = MissionListRecyclerAdapter(missionList).apply {
+            onAddItemClick = {
+                currentChallenge.missionList = it
+                updateUI()
             }
         }
+        binding.challengeContents.missionList.adapter = missionListAdapter
     }
 
     private fun updateUI() {
