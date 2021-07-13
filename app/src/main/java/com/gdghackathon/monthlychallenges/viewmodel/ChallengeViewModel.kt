@@ -37,4 +37,9 @@ class ChallengeViewModel : ViewModel() {
             _challengeId.value = 37
         }
     }
+
+    fun deleteChallenge(challengeId: Long) = viewModelScope.launch {
+        repository.deleteChallenge(challengeId)
+        _challengeId.value = -1
+    }
 }
