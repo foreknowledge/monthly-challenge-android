@@ -25,15 +25,17 @@ class ChallengeContentsActivity : AppCompatActivity() {
         ViewModelProvider(this).get(ChallengeViewModel::class.java)
     }
 
+    private var challengeId: Long = 1
+
     private lateinit var binding: ActivityChallengeContentsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_challenge_contents)
 
-        val challengeId = intent.getLongExtra(EXTRA_CHALLENGE_ID, 1)
+        challengeId = intent.getLongExtra(EXTRA_CHALLENGE_ID, 1)
 
-        Log.d("test", "challenge id = $challengeId")
+        Log.i("test", "challenge id = $challengeId")
         challengeViewModel.loadData(challengeId)
 
         setupUI()
@@ -49,7 +51,21 @@ class ChallengeContentsActivity : AppCompatActivity() {
     private fun setupUI() {
         binding.lifecycleOwner = this
         binding.challengeContents.missionList.layoutManager = GridLayoutManager(this@ChallengeContentsActivity, 5)
+
+        binding.tvStopChallenge.setOnClickListener {
+            showDeleteChallengePopup()
+        }
     }
+
+    private fun showDeleteChallengePopup() = AlertDialog.Builder(this)
+        .setTitle(getString(R.string.str_stop_challenge))
+        .setMessage(getString(R.string.str_stop_challenge_desc))
+        .setPositiveButton(R.string.dialog_yes) { _, _ ->
+            challengeViewModel.deleteChallenge(challengeId)
+        }
+        .setNegativeButton(R.string.dialog_no) { dialog, _ -> dialog.dismiss() }
+        .create()
+        .show()
 
     private fun subscribeUI() {
         challengeViewModel.challenge.observe(this, {
@@ -69,6 +85,14 @@ class ChallengeContentsActivity : AppCompatActivity() {
                     }
                 }
                 adapter?.notifyDataSetChanged()
+            }
+        })
+
+        challengeViewModel.challengeId.observe(this, {
+            if (it == -1L) {
+                GlobalApp.challengeId = it
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         })
     }
