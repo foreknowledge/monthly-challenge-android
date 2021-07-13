@@ -16,8 +16,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         GlobalApp.challengeId =
-            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
-                .getLong(getString(R.string.shared_pref_key), -1L)
+            getSharedPreferences(getString(R.string.shared_pref_key), MODE_PRIVATE)
+                .getLong(getString(R.string.shared_pref_challenge_id), -1L)
 
         Log.i("challengeId", GlobalApp.challengeId.toString())
 
