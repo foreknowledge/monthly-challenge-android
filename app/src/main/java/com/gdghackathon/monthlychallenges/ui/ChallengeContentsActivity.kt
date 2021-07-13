@@ -2,6 +2,7 @@ package com.gdghackathon.monthlychallenges.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -31,6 +32,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         val challengeId = intent.getLongExtra(EXTRA_CHALLENGE_ID, 1)
 
+        Log.d("test", "challenge id = $challengeId")
         challengeViewModel.loadData(challengeId)
 
         setupUI()
