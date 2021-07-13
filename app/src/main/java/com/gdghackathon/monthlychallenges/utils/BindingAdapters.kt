@@ -2,6 +2,7 @@ package com.gdghackathon.monthlychallenges.utils
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -37,6 +38,14 @@ fun ImageView.changeImage(count: Int?) {
         }
 
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, resId, null))
+    }
+}
+
+@BindingAdapter("set_tintColor")
+fun ImageView.setTintColor(missionCheck: Boolean?) {
+    missionCheck?.let {
+        val tintColorRes = if (it) R.color.color_dark_grey else R.color.color_light_grey
+        setColorFilter(ContextCompat.getColor(context, tintColorRes), android.graphics.PorterDuff.Mode.MULTIPLY)
     }
 }
 
