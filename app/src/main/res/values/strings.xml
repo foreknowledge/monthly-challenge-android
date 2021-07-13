@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Monthly Challenges</string>
+    <string name="app_name">챌린이</string>
     <string name="shared_pref_key">com.gdghackathon.monthlychallenges</string>
+    <string name="shared_pref_challenge_id">challenge id</string>
 
     <string name="str_add_mission">+ 추가</string>
 
