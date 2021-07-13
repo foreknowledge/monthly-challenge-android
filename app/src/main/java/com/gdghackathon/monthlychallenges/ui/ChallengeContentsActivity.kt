@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
+import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
@@ -37,6 +38,12 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         setupUI()
         subscribeUI()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        GlobalApp.saveChallengeId(this)
     }
 
     private fun setupUI() {

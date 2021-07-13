@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
 import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.R
 
@@ -15,15 +16,18 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         GlobalApp.challengeId =
-            getPreferences(MODE_PRIVATE).getLong(getString(R.string.shared_pref_key), -1L)
+            getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
+                .getLong(getString(R.string.shared_pref_key), -1L)
 
         Log.i("challengeId", GlobalApp.challengeId.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = if (GlobalApp.challengeId == null || GlobalApp.challengeId == -1L) {
+            val intent = if (GlobalApp.challengeId == -1L) {
                 Intent(this, MainActivity::class.java)
             } else {
-                Intent(this, ChallengeContentsActivity::class.java)
+                Intent(this, ChallengeContentsActivity::class.java).apply {
+                    putExtra(EXTRA_CHALLENGE_ID, GlobalApp.challengeId)
+                }
             }
 
             startActivity(intent)
