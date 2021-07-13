@@ -57,3 +57,11 @@ fun ImageView.setImage(url: String?) {
             .into(this)
     }
 }
+
+@BindingAdapter("set_textColor")
+fun TextView.setTextColor(missionCheck: Boolean?) {
+    missionCheck?.let {
+        val colorRes = if (it) R.color.white else R.color.color_dark_grey
+        setTextColor(context.getColor(colorRes))
+    }
+}
