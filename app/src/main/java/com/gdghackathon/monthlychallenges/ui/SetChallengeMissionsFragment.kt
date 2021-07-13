@@ -1,5 +1,6 @@
 package com.gdghackathon.monthlychallenges.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
+import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.NUM_OF_MISSIONS
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.FragmentSetChallengeMissionsBinding
-import com.gdghackathon.monthlychallenges.model.Challenge
+import com.gdghackathon.monthlychallenges.model.data.Challenge
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.setImage
 import com.gdghackathon.monthlychallenges.utils.setMissionCount
@@ -72,7 +75,10 @@ class SetChallengeMissionsFragment(
             initMissionListRecyclerView()
         })
         challengeViewModel.challengeId.observe(viewLifecycleOwner, {
-            // challengeId 설정 & 액티비티 이동
+            GlobalApp.challengeId = it
+            val intent = Intent(context, ChallengeContentsActivity::class.java)
+            intent.putExtra(EXTRA_CHALLENGE_ID, it)
+            startActivity(intent)
         })
     }
 

@@ -9,7 +9,7 @@ import com.gdghackathon.monthlychallenges.databinding.ItemMissionBinding
 import com.gdghackathon.monthlychallenges.listener.OnEditTextChangedListener
 import com.gdghackathon.monthlychallenges.listener.OnItemClickListener
 import com.gdghackathon.monthlychallenges.listener.OnItemSingleClickListener
-import com.gdghackathon.monthlychallenges.model.Mission
+import com.gdghackathon.monthlychallenges.model.data.Mission
 
 class MissionListRecyclerAdapter(
         val missionList: MutableList<Mission>,
@@ -63,7 +63,7 @@ class MissionListRecyclerAdapter(
     override fun getItemViewType(position: Int) = if (position < missionList.size) VIEW_TYPE_MISSION else VIEW_TYPE_ADD
 
     private fun addNewMission() {
-        missionList.add(Mission(-1, "", false))
+        missionList.add(Mission())
 
         val positionToAdd = missionList.size - 1
         if (missionList.size < NUM_OF_MISSIONS)

@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_1
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_2
 import com.gdghackathon.monthlychallenges.R
-import com.gdghackathon.monthlychallenges.model.Challenge
+import com.gdghackathon.monthlychallenges.model.data.Challenge
 
 @BindingAdapter("set_startDate")
 fun TextView.setStartDate(date: String?) {

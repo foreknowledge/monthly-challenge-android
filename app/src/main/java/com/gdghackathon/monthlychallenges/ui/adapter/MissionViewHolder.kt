@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gdghackathon.monthlychallenges.databinding.ItemMissionBinding
 import com.gdghackathon.monthlychallenges.listener.OnEditTextChangedListener
 import com.gdghackathon.monthlychallenges.listener.OnItemClickListener
-import com.gdghackathon.monthlychallenges.model.Mission
+import com.gdghackathon.monthlychallenges.model.data.Mission
 
 class MissionViewHolder(
         private val binding: ItemMissionBinding

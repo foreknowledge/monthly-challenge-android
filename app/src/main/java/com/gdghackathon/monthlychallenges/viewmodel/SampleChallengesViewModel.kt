@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gdghackathon.monthlychallenges.model.Challenge
 import com.gdghackathon.monthlychallenges.model.ChallengeRepository
+import com.gdghackathon.monthlychallenges.model.data.Challenge
 import kotlinx.coroutines.launch
 
 class SampleChallengesViewModel : ViewModel() {

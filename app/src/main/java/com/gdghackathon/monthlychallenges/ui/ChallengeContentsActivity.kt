@@ -2,6 +2,7 @@ package com.gdghackathon.monthlychallenges.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
 import com.gdghackathon.monthlychallenges.R
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
@@ -28,7 +30,10 @@ class ChallengeContentsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_challenge_contents)
 
-//        challengeViewModel.loadData(1)
+        val challengeId = intent.getLongExtra(EXTRA_CHALLENGE_ID, 1)
+
+        Log.d("test", "challenge id = $challengeId")
+        challengeViewModel.loadData(challengeId)
 
         setupUI()
         subscribeUI()

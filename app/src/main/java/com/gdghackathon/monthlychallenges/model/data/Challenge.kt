@@ -1,4 +1,4 @@
-package com.gdghackathon.monthlychallenges.model
+package com.gdghackathon.monthlychallenges.model.data
 
 import com.google.gson.annotations.SerializedName
 
@@ -15,10 +15,12 @@ data class Challenge(
 
 data class Mission(
         var id: Long = -1,
-        var name: String = "",
         @SerializedName("mission_check")
         var missionCheck: Boolean = false,
+        var name: String = "",
+        var memo: String? = null,
         @SerializedName("image")
         var imageUrl: String? = null,
-        var memo: String? = null
+        @SerializedName("thumbnail_image")
+        var thumbnailImageUrl: String? = null
 )
