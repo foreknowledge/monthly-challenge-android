@@ -2,17 +2,17 @@ package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
 import com.gdghackathon.monthlychallenges.model.data.Challenge
+import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
+import com.gdghackathon.monthlychallenges.model.data.ChallengeResponse
 import com.gdghackathon.monthlychallenges.model.data.Mission
 import retrofit2.http.*
 
 interface RetrofitService {
     // 챌린지 생성
-    @FormUrlEncoded
     @POST("challenge")
     suspend fun createChallenge(
-        @Field("name") name: String,
-        @Field("mission") missionList: List<Mission>
-    ): Long
+        @Body challengeRequest: ChallengeRequest
+    ): ChallengeResponse
 
     // 챌린지 삭제
     @DELETE("challenge/{challengeId}")

@@ -1,14 +1,14 @@
 package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
-import com.gdghackathon.monthlychallenges.model.data.Mission
+import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
 
 object ChallengeRepository {
     private val challengeDataSource = ChallengeDataSource()
 
     // 챌린지 생성
-    suspend fun createChallenge(name: String, missionList: List<Mission>) =
-        challengeDataSource.createChallenge(name, missionList)
+    suspend fun createChallenge(challengeRequest: ChallengeRequest) =
+        challengeDataSource.createChallenge(challengeRequest)
 
     // 챌린지 삭제
     suspend fun deleteChallenge(challengeId: Long) =

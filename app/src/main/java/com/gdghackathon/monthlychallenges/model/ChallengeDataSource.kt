@@ -2,6 +2,7 @@ package com.gdghackathon.monthlychallenges.model
 
 import android.graphics.Bitmap
 import com.gdghackathon.monthlychallenges.model.data.Challenge
+import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
 import com.gdghackathon.monthlychallenges.model.data.Mission
 
 class ChallengeDataSource {
@@ -9,8 +10,8 @@ class ChallengeDataSource {
         RetrofitClient.getInstance().create(RetrofitService::class.java)
 
     // 챌린지 생성
-    suspend fun createChallenge(name: String, missionList: List<Mission>): Long? =
-        retrofitService.createChallenge(name, missionList)
+    suspend fun createChallenge(challengeRequest: ChallengeRequest) =
+        retrofitService.createChallenge(challengeRequest)
 
     // 챌린지 삭제
     suspend fun deleteChallenge(challengeId: Long): Boolean =
