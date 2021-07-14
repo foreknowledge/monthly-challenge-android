@@ -94,6 +94,13 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 finish()
             }
         })
+
+        challengeViewModel.missionUpdated.observe(this, {
+            Log.d("test", "mission updated = $it")
+            if (it) {
+                challengeViewModel.loadData(challengeId)
+            }
+        })
     }
 
     private fun uploadPhoto(missionId: Long) {
