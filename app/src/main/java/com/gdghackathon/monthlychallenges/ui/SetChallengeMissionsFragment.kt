@@ -77,6 +77,7 @@ class SetChallengeMissionsFragment(
         challengeViewModel.challengeId.observe(viewLifecycleOwner, {
             GlobalApp.setAndSaveChallengeId(requireActivity(), it)
             val intent = Intent(context, ChallengeContentsActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             intent.putExtra(EXTRA_CHALLENGE_ID, it)
             startActivity(intent)
         })
