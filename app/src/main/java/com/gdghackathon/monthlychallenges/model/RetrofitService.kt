@@ -5,6 +5,7 @@ import com.gdghackathon.monthlychallenges.model.data.Challenge
 import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
 import com.gdghackathon.monthlychallenges.model.data.ChallengeResponse
 import com.gdghackathon.monthlychallenges.model.data.Mission
+import retrofit2.Response
 import retrofit2.http.*
 
 interface RetrofitService {
@@ -12,7 +13,7 @@ interface RetrofitService {
     @POST("challenge")
     suspend fun createChallenge(
         @Body challengeRequest: ChallengeRequest
-    ): ChallengeResponse
+    ): Response<ChallengeResponse>
 
     // 챌린지 삭제
     @DELETE("challenge/{challengeId}")
