@@ -1,5 +1,6 @@
 package com.gdghackathon.monthlychallenges.viewmodel
 
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -38,9 +39,13 @@ class ChallengeViewModel : ViewModel() {
             _challengeId.value = challengeResponse.id
         }
     }
-
+    
     fun deleteChallenge(challengeId: Long) = viewModelScope.launch {
         repository.deleteChallenge(challengeId)
         _challengeId.value = -1
+    }
+      
+    fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String?) = viewModelScope.launch {
+        repository.completeMission(challengeId, missionId, image, memo)
     }
 }

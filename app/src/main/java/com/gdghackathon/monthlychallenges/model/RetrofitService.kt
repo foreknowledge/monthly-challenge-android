@@ -42,7 +42,7 @@ interface RetrofitService {
     suspend fun completeMission(
         @Path("challengeId") challengeId: Long,
         @Path("missionId") missionId: Long,
-        @Part("image") image: Bitmap,
+        @Part("image") image: Bitmap?,
         @Part("memo") memo: String?
     ): Mission
 }
