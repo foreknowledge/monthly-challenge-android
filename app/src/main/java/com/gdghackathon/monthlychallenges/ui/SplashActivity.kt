@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
             getSharedPreferences(getString(R.string.shared_pref_key), MODE_PRIVATE)
                 .getLong(getString(R.string.shared_pref_challenge_id), -1L)
 
-        Log.i("challengeId", GlobalApp.challengeId.toString())
+        Log.i("test", GlobalApp.challengeId.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = if (GlobalApp.challengeId == -1L) {
