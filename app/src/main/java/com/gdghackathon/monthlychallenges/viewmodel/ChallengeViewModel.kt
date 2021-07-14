@@ -22,22 +22,27 @@ class ChallengeViewModel : ViewModel() {
     val challengeId: LiveData<Long> = _challengeId
 
     fun loadData(challengeId: Long) = viewModelScope.launch {
-        _challenge.value = repository.getChallenge(challengeId)
+        val response = repository.getChallenge(challengeId)
+        if (response.code() == RESPONSE_CODE_OK) {
+            _challenge.value = response.body()
+        }
     }
 
     fun loadMissions(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
-        repository.getChallenge(challengeId).let {
-            _challenge.value = Challenge(name = challengeTitle, missionList = it.missionList)
+        val response = repository.getChallenge(challengeId)
+        if (response.code() == RESPONSE_CODE_OK) {
+            val challenge = response.body() ?: return@launch
+            _challenge.value = Challenge(name = challengeTitle, missionList = challenge.missionList)
         }
     }
 
     fun createChallenge(challenge: Challenge) = viewModelScope.launch {
-        if (challenge.missionList.size == NUM_OF_MISSIONS) {
-            val challengeRequest = ChallengeRequest(challenge.name, challenge.missionList)
-            val response = repository.createChallenge(challengeRequest)
-            if (response.code() == RESPONSE_CODE_OK) {
-                _challengeId.value = response.body()?.id
-            }
+        if (challenge.missionList.size != NUM_OF_MISSIONS) return@launch
+
+        val challengeRequest = ChallengeRequest(challenge.name, challenge.missionList)
+        val response = repository.createChallenge(challengeRequest)
+        if (response.code() == RESPONSE_CODE_OK) {
+            _challengeId.value = response.body()?.id
         }
     }
     
