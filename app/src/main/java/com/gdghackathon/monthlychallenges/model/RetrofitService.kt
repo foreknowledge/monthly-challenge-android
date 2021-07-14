@@ -1,10 +1,10 @@
 package com.gdghackathon.monthlychallenges.model
 
-import android.graphics.Bitmap
 import com.gdghackathon.monthlychallenges.model.data.Challenge
 import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
 import com.gdghackathon.monthlychallenges.model.data.ChallengeResponse
 import com.gdghackathon.monthlychallenges.model.data.Mission
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -43,7 +43,7 @@ interface RetrofitService {
     suspend fun completeMission(
         @Path("challengeId") challengeId: Long,
         @Path("missionId") missionId: Long,
-        @Part("image") image: Bitmap?,
-        @Part("memo") memo: String
-    ): Mission
+        @Part file: MultipartBody.Part?,
+        @Part memo: MultipartBody.Part
+    ): Response<Unit>
 }

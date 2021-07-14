@@ -163,7 +163,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             ""
         }
 
-        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, image, memo)
+        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, null, memo)
     }
 
     private fun checkCameraPermission() =
