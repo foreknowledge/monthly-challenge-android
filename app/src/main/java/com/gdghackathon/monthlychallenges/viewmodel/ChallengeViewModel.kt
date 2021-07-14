@@ -46,7 +46,7 @@ class ChallengeViewModel : ViewModel() {
         _challengeId.value = -1
     }
       
-    fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String?) = viewModelScope.launch {
+    fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String) = viewModelScope.launch {
         repository.completeMission(challengeId, missionId, image, memo)
     }
 }

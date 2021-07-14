@@ -44,6 +44,6 @@ interface RetrofitService {
         @Path("challengeId") challengeId: Long,
         @Path("missionId") missionId: Long,
         @Part("image") image: Bitmap?,
-        @Part("memo") memo: String?
+        @Part("memo") memo: String
     ): Mission
 }
