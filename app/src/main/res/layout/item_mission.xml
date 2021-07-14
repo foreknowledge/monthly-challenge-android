@@ -22,50 +22,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="2.5dp"
-        android:layout_marginVertical="5dp">
-
-        <ImageView
+        android:layout_marginVertical="5dp" >
+        
+        <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/dr_rect_rounded"
             android:backgroundTint="@color/color_light_grey"
-            app:layout_constraintBottom_toBottomOf="@id/item_text"
-            app:layout_constraintEnd_toEndOf="@id/item_text"
-            app:layout_constraintStart_toStartOf="@id/item_text"
-            app:layout_constraintTop_toTopOf="@id/item_text"
-            app:set_tintColor="@{mission.missionCheck}"
-            app:set_image="@{mission.thumbnailImageUrl}" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/dr_rect_rounded"
-            android:backgroundTint="@color/color_alpha_grey"
-            android:visibility="@{mission.thumbnailImageUrl != null ? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/item_text"
-            app:layout_constraintEnd_toEndOf="@id/item_text"
-            app:layout_constraintStart_toStartOf="@id/item_text"
-            app:layout_constraintTop_toTopOf="@id/item_text" />
-
-        <EditText
-            android:id="@+id/item_text"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@color/color_light_grey"
-            android:focusable="@{editable}"
-            android:fontFamily="@font/nanum_jang_mi_ce"
-            android:gravity="center"
-            android:inputType="textNoSuggestions|textMultiLine"
-            android:maxLength="25"
-            android:onClick="@{() -> listener.onClick(mission)}"
-            android:text="@{mission.name}"
-            android:textSize="18sp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="5dp"
             app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:set_textColor="@{mission.missionCheck}"/>
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@id/item_text"
+                app:layout_constraintEnd_toEndOf="@id/item_text"
+                app:layout_constraintStart_toStartOf="@id/item_text"
+                app:layout_constraintTop_toTopOf="@id/item_text"
+                app:set_tintColor="@{mission.missionCheck}"
+                app:set_image="@{mission.thumbnailImageUrl}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_alpha_grey"
+                android:visibility="@{mission.thumbnailImageUrl != null ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@id/item_text"
+                app:layout_constraintEnd_toEndOf="@id/item_text"
+                app:layout_constraintStart_toStartOf="@id/item_text"
+                app:layout_constraintTop_toTopOf="@id/item_text" />
+
+            <EditText
+                android:id="@+id/item_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:backgroundTint="@color/color_light_grey"
+                android:focusable="@{editable}"
+                android:fontFamily="@font/nanum_jang_mi_ce"
+                android:gravity="center"
+                android:inputType="textNoSuggestions|textMultiLine"
+                android:maxLength="25"
+                android:onClick="@{() -> listener.onClick(mission)}"
+                android:text="@{mission.name}"
+                android:textSize="18sp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:set_textColor="@{mission.missionCheck}"/>
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
