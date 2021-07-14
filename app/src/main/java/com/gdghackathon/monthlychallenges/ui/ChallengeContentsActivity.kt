@@ -46,12 +46,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
         subscribeUI()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        GlobalApp.saveChallengeId(this)
-    }
-
     private fun setupUI() {
         binding.lifecycleOwner = this
         binding.challengeContents.missionList.layoutManager = GridLayoutManager(this@ChallengeContentsActivity, 5)
@@ -94,7 +88,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         challengeViewModel.challengeId.observe(this, {
             if (it == -1L) {
-                GlobalApp.challengeId = it
+                GlobalApp.setAndSaveChallengeId(this, it)
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }

@@ -75,7 +75,7 @@ class SetChallengeMissionsFragment(
             initMissionListRecyclerView()
         })
         challengeViewModel.challengeId.observe(viewLifecycleOwner, {
-            GlobalApp.challengeId = it
+            GlobalApp.setAndSaveChallengeId(requireActivity(), it)
             val intent = Intent(context, ChallengeContentsActivity::class.java)
             intent.putExtra(EXTRA_CHALLENGE_ID, it)
             startActivity(intent)
