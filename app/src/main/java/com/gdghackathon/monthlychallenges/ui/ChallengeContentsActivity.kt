@@ -159,7 +159,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
         val memo = if (isWrite) {
             editMemo.editableText.toString()
         } else {
-            null
+            ""
         }
 
         challengeViewModel.completeMission(GlobalApp.challengeId, missionId, image, memo)

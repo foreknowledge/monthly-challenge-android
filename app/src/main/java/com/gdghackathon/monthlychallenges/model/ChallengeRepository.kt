@@ -27,6 +27,6 @@ object ChallengeRepository {
         challengeDataSource.getAllMissions(challengeId)
 
     // 챌린지 미션 인증(사진 업로드)
-    suspend fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String?) =
+    suspend fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String) =
         challengeDataSource.completeMission(challengeId, missionId, image, memo)
 }

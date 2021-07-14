@@ -32,6 +32,6 @@ class ChallengeDataSource {
         challengeId: Long,
         missionId: Long,
         image: Bitmap?,
-        memo: String?
+        memo: String
     ) = retrofitService.completeMission(challengeId, missionId, image, memo)
 }
