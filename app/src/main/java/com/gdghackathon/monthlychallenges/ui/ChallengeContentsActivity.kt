@@ -109,7 +109,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         imageView.setOnClickListener {
             checkCameraPermission()
-            dispatchTakePictureIntent()
         }
 
         uploadButton.setOnClickListener {
@@ -174,6 +173,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             requestPermissions(arrayOf(permission), requestCode)
         } else {
             Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
+            dispatchTakePictureIntent()
         }
     }
 
@@ -189,6 +189,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() &&
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                    dispatchTakePictureIntent()
                 } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
