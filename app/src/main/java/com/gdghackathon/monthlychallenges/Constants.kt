@@ -9,3 +9,4 @@ const val SAMPLE_CHALLENGE_TITLE = "sample_challenge_title"
 const val EXTRA_CHALLENGE_ID = "challenge_id"
 
 const val REQUEST_CAMERA_PERMISSION_CODE = 1001
+const val REQUEST_IMAGE_CAPTURE = 1002
