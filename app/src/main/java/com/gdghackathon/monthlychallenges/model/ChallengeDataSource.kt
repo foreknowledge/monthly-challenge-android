@@ -33,7 +33,7 @@ class ChallengeDataSource {
     suspend fun completeMission(
         challengeId: Long,
         missionId: Long,
-        image: Bitmap,
+        image: Bitmap?,
         memo: String?
     ): Mission? =
         retrofitService.completeMission(challengeId, missionId, image, memo)
