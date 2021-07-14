@@ -1,21 +1,22 @@
 package com.gdghackathon.monthlychallenges.ui
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
 import com.gdghackathon.monthlychallenges.GlobalApp
 import com.gdghackathon.monthlychallenges.R
+import com.gdghackathon.monthlychallenges.REQUEST_CAMERA_PERMISSION_CODE
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
@@ -139,5 +140,37 @@ class ChallengeContentsActivity : AppCompatActivity() {
         }
 
         alertDialog.show()
+    }
+
+    private fun checkCameraPermission() =
+        checkPermission(Manifest.permission.CAMERA, REQUEST_CAMERA_PERMISSION_CODE)
+
+    private fun checkPermission(permission: String, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+            requestPermissions(arrayOf(permission), requestCode)
+        } else {
+            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION_CODE -> {
+                if ((grantResults.isNotEmpty() &&
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
+            else -> { /* ignored */ }
+        }
     }
 }
