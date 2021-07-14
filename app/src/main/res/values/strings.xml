@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Monthly Challenges</string>
+    <string name="app_name">챌린이</string>
     <string name="shared_pref_key">com.gdghackathon.monthlychallenges</string>
+    <string name="shared_pref_challenge_id">challenge id</string>
 
     <string name="str_add_mission">+ 추가</string>
 
@@ -39,6 +40,9 @@
 
     <!-- activity_challenge_contents.xml -->
     <string name="str_stop_challenge"><u>챌린지 중단하기</u></string>
+    <string name="str_stop_challenge_desc">챌린지 중단 시, 이전 챌린지 내역이 모두 삭제됩니다. 정말 중단하시겠어요?</string>
+    <string name="dialog_yes">예</string>
+    <string name="dialog_no">아니오</string>
 
     <!-- fragment_set_challenge_missions.xml -->
     <string name="str_create_challenge">생성하기</string>

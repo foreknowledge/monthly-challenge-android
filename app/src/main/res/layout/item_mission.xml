@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="editable"
@@ -23,11 +24,24 @@
         android:layout_marginHorizontal="2.5dp"
         android:layout_marginVertical="5dp">
 
-        <View
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/dr_rect_rounded"
             android:backgroundTint="@color/color_light_grey"
+            app:layout_constraintBottom_toBottomOf="@id/item_text"
+            app:layout_constraintEnd_toEndOf="@id/item_text"
+            app:layout_constraintStart_toStartOf="@id/item_text"
+            app:layout_constraintTop_toTopOf="@id/item_text"
+            app:set_tintColor="@{mission.missionCheck}"
+            app:set_image="@{mission.thumbnailImageUrl}" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/dr_rect_rounded"
+            android:backgroundTint="@color/color_alpha_grey"
+            android:visibility="@{mission.thumbnailImageUrl != null ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/item_text"
             app:layout_constraintEnd_toEndOf="@id/item_text"
             app:layout_constraintStart_toStartOf="@id/item_text"
@@ -46,12 +60,12 @@
             android:maxLength="25"
             android:onClick="@{() -> listener.onClick(mission)}"
             android:text="@{mission.name}"
-            android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:set_textColor="@{mission.missionCheck}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

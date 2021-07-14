@@ -8,9 +8,9 @@ class GlobalApp : Application() {
         var challengeId: Long = -1
 
         fun saveChallengeId(activity: Activity) {
-            val sharedPref = activity.getSharedPreferences(activity.getString(R.string.app_name), MODE_PRIVATE)
+            val sharedPref = activity.getSharedPreferences(activity.getString(R.string.shared_pref_key), MODE_PRIVATE)
             val editor = sharedPref.edit()
-            editor.putLong(activity.getString(R.string.shared_pref_key), challengeId)
+            editor.putLong(activity.getString(R.string.shared_pref_challenge_id), challengeId)
             editor.apply()
         }
     }

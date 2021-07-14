@@ -2,8 +2,10 @@ package com.gdghackathon.monthlychallenges.utils
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_1
 import com.gdghackathon.monthlychallenges.BOUNDARY_CHALLINEY_2
 import com.gdghackathon.monthlychallenges.R
@@ -26,13 +28,40 @@ fun TextView.setMissionCount(challenge: Challenge?) {
     }
 }
 
-@BindingAdapter("set_image")
-fun ImageView.setImage(count: Int?) {
+@BindingAdapter("change_image")
+fun ImageView.changeImage(count: Int?) {
     count?.let {
-        val resId = if (count <= BOUNDARY_CHALLINEY_1) R.drawable.challiney_1
-        else if (count <= BOUNDARY_CHALLINEY_2) R.drawable.challiney_2
-        else R.drawable.challiney_3
+        val resId = when {
+            it <= BOUNDARY_CHALLINEY_1 -> R.drawable.challiney_1
+            it <= BOUNDARY_CHALLINEY_2 -> R.drawable.challiney_2
+            else -> R.drawable.challiney_3
+        }
 
         setImageDrawable(ResourcesCompat.getDrawable(context.resources, resId, null))
+    }
+}
+
+@BindingAdapter("set_tintColor")
+fun ImageView.setTintColor(missionCheck: Boolean?) {
+    missionCheck?.let {
+        val tintColorRes = if (it) R.color.color_dark_grey else R.color.color_light_grey
+        setColorFilter(ContextCompat.getColor(context, tintColorRes), android.graphics.PorterDuff.Mode.MULTIPLY)
+    }
+}
+
+@BindingAdapter("set_image")
+fun ImageView.setImage(url: String?) {
+    url?.let {
+        Glide.with(this)
+            .load(url)
+            .into(this)
+    }
+}
+
+@BindingAdapter("set_textColor")
+fun TextView.setTextColor(missionCheck: Boolean?) {
+    missionCheck?.let {
+        val colorRes = if (it) R.color.white else R.color.color_dark_grey
+        setTextColor(context.getColor(colorRes))
     }
 }
