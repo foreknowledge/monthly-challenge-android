@@ -1,8 +1,8 @@
 package com.gdghackathon.monthlychallenges.utils
 
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 object FormFileUtil {
@@ -14,7 +14,7 @@ object FormFileUtil {
         return MultipartBody.Part.createFormData(
             key,
             file.name,
-            RequestBody.create(MediaType.parse("image/*"), file)
+            file.asRequestBody("image/*".toMediaTypeOrNull())
         )
     }
 }
