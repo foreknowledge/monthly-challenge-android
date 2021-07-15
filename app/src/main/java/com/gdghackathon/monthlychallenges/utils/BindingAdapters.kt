@@ -1,6 +1,5 @@
 package com.gdghackathon.monthlychallenges.utils
 
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -45,7 +44,6 @@ fun ImageView.changeImage(count: Int?) {
 @BindingAdapter("set_backgroundColor")
 fun ImageView.setBackgroundColor(missionCheck: Boolean?) {
     missionCheck?.let {
-        Log.d("test", "m = $missionCheck")
         val tintColorRes = if (it) R.color.color_dark_grey else R.color.color_light_grey
         setBackgroundColor(ContextCompat.getColor(context, tintColorRes))
     }
