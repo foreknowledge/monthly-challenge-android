@@ -13,7 +13,7 @@ object BitmapUtil {
     private fun compressBitmapToImageFile(imagePath: String, bitmap: Bitmap): String {
         FileOutputStream(imagePath)
             .use {
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, it)
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
                 it.flush()
 
                 return imagePath
