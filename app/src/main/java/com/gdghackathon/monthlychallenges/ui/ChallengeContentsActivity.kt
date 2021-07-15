@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.*
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
+import com.gdghackathon.monthlychallenges.utils.BitmapUtil
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 
 class ChallengeContentsActivity : AppCompatActivity() {
@@ -158,8 +159,9 @@ class ChallengeContentsActivity : AppCompatActivity() {
     }
 
     private fun completeMission(missionId: Long, isUpload: Boolean, isWrite: Boolean) {
-        val image = if (isUpload) {
-            (imageView.drawable as BitmapDrawable).bitmap
+        val imageFile = if (isUpload) {
+            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+            BitmapUtil.bitmapToImageFile(this, bitmap)
         } else {
             null
         }
@@ -170,7 +172,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             ""
         }
 
-        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, null, memo)
+        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, imageFile, memo)
     }
 
     private fun checkCameraPermission() =
