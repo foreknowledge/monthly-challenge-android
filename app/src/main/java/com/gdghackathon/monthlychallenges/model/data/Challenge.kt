@@ -1,6 +1,7 @@
 package com.gdghackathon.monthlychallenges.model.data
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Challenge(
         var id: Long = -1,
@@ -23,4 +24,4 @@ data class Mission(
         var imageUrl: String? = null,
         @SerializedName("thumbnail_image")
         var thumbnailImageUrl: String? = null
-)
+) : Serializable

@@ -76,6 +76,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
                         // 인증 or 자세히 보기
                         if (mission.missionCheck) {
                             val intent = Intent(this@ChallengeContentsActivity, DetailMissionActivity::class.java)
+                            intent.putExtra(EXTRA_MISSION, mission)
                             startActivity(intent)
                         } else {
                             uploadPhoto(mission.id)
