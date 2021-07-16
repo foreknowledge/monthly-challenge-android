@@ -19,5 +19,7 @@ class DetailMissionActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
         binding.mission = mission
+
+        binding.imagebuttonClose.setOnClickListener { finish() }
     }
 }

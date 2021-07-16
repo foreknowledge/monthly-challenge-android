@@ -7,6 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.*
@@ -32,6 +34,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChallengeContentsBinding
 
     private lateinit var imageView: ImageView
+    private lateinit var uploadButton: Button
     private lateinit var editMemo: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,7 +100,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
         })
 
         challengeViewModel.missionUpdated.observe(this, {
-            Log.d("test", "mission updated = $it")
             if (it) {
                 challengeViewModel.loadData(challengeId)
             }
@@ -113,7 +115,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             .create()
 
         imageView = view.findViewById(R.id.imageview_add_image)
-        val uploadButton = view.findViewById<Button>(R.id.button_upload_image)
+        uploadButton = view.findViewById(R.id.button_upload_image)
         val noUploadButton = view.findViewById<TextView>(R.id.textview_no_upload)
 
         imageView.setOnClickListener {
@@ -141,9 +143,20 @@ class ChallengeContentsActivity : AppCompatActivity() {
             .setView(view)
             .create()
 
-        editMemo = view.findViewById<EditText>(R.id.edittext_memo)
+        editMemo = view.findViewById(R.id.edittext_memo)
         val writeButton = view.findViewById<Button>(R.id.button_write_memo)
         val noWriteButton = view.findViewById<TextView>(R.id.textview_no_write_memo)
+
+        editMemo.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null) {
+                    writeButton.isEnabled = p0.isNotEmpty()
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+            override fun afterTextChanged(p0: Editable?) { }
+        })
 
         writeButton.setOnClickListener {
             completeMission(missionId, isUpload, true)
@@ -224,6 +237,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             val imageBitmap = data?.extras?.get("data") as Bitmap
 
             imageView.setImageBitmap(imageBitmap)
+            uploadButton.isEnabled = true
         }
     }
 }
