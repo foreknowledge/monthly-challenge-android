@@ -9,7 +9,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.*
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -22,6 +26,7 @@ import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsB
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.BitmapUtil
 import com.gdghackathon.monthlychallenges.utils.FileUtil
+import com.gdghackathon.monthlychallenges.utils.ToastUtil
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 import java.io.File
 
@@ -76,7 +81,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
         challengeViewModel.challenge.observe(this, {
             binding.challengeContents.challenge = it
 
-            with (binding.challengeContents.missionList) {
+            with(binding.challengeContents.missionList) {
                 val missionList = it.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
                     setOnItemClickListener { mission ->
@@ -92,6 +97,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 }
                 adapter?.notifyDataSetChanged()
             }
+
+            hideProgress()
         })
 
         challengeViewModel.challengeId.observe(this, {
@@ -157,8 +164,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 }
             }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-            override fun afterTextChanged(p0: Editable?) { }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {}
         })
 
         writeButton.setOnClickListener {
@@ -185,6 +192,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         // 이미지 파일 초기화
         imageFile = null
+
+        showProgress()
     }
 
     private fun checkCameraPermission() =
@@ -194,7 +203,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
             requestPermissions(arrayOf(permission), requestCode)
         } else {
-            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
             switchToCamera()
         }
     }
@@ -209,11 +217,12 @@ class ChallengeContentsActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_CAMERA_PERMISSION_CODE -> {
                 if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
+                    ToastUtil.showToast(this, "Permission granted")
                     switchToCamera()
                 } else {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                    ToastUtil.showToast(this, "Permission denied")
                 }
                 return
             }
@@ -242,4 +251,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             uploadButton.isEnabled = true
         }
     }
+
+    private fun showProgress() { binding.progressCircular.visibility = View.VISIBLE }
+    private fun hideProgress() { binding.progressCircular.visibility = View.GONE }
 }

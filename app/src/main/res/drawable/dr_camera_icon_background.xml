@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:gravity="center" android:width="30dp" android:height="30dp">
+        <bitmap android:src="@drawable/ic_camera_black" />
+    </item>
+
+    <item
+        android:drawable="@drawable/dr_rect_rounded_border_2">
+        <shape>
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -31,16 +31,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/textview_date"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/mission_date"-->
-<!--            android:textColor="@color/color_dark_grey"-->
-<!--            android:textSize="17sp"-->
-<!--            app:layout_constraintLeft_toRightOf="@id/imagebutton_share"-->
-<!--            app:layout_constraintRight_toLeftOf="@id/imagebutton_close"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:id="@+id/textview_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_dark_grey"
+            android:textSize="17sp"
+            app:layout_constraintLeft_toRightOf="@id/imagebutton_share"
+            app:layout_constraintRight_toLeftOf="@id/imagebutton_close"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setDate="@{mission.certificationDate}" />
 
         <ImageView
             android:id="@+id/imageview_mission_image"
@@ -49,10 +49,10 @@
             android:layout_marginTop="15dp"
             android:background="@color/color_less_light_grey"
             android:src="@drawable/no_image"
-            app:set_image="@{mission.imageUrl}"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imagebutton_share" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imagebutton_share"
+            app:set_image="@{mission.imageUrl}" />
 
         <TextView
             android:id="@+id/textview_mission_title"
