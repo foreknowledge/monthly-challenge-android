@@ -1,7 +1,7 @@
 package com.gdghackathon.monthlychallenges.model
 
-import android.graphics.Bitmap
 import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
+import okhttp3.MultipartBody
 
 object ChallengeRepository {
     private val challengeDataSource = ChallengeDataSource()
@@ -27,6 +27,6 @@ object ChallengeRepository {
         challengeDataSource.getAllMissions(challengeId)
 
     // 챌린지 미션 인증(사진 업로드)
-    suspend fun completeMission(challengeId: Long, missionId: Long, image: Bitmap?, memo: String) =
-        challengeDataSource.completeMission(challengeId, missionId, image, memo)
+    suspend fun completeMission(challengeId: Long, missionId: Long, imageFile: MultipartBody.Part?, memo: MultipartBody.Part) =
+        challengeDataSource.completeMission(challengeId, missionId, imageFile, memo)
 }

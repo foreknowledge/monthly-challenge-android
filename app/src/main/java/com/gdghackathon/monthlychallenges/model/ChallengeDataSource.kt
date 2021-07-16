@@ -1,7 +1,7 @@
 package com.gdghackathon.monthlychallenges.model
 
-import android.graphics.Bitmap
 import com.gdghackathon.monthlychallenges.model.data.ChallengeRequest
+import okhttp3.MultipartBody
 
 class ChallengeDataSource {
     private val retrofitService =
@@ -31,7 +31,7 @@ class ChallengeDataSource {
     suspend fun completeMission(
         challengeId: Long,
         missionId: Long,
-        image: Bitmap?,
-        memo: String
-    ) = retrofitService.completeMission(challengeId, missionId, image, memo)
+        imageFile: MultipartBody.Part?,
+        memo: MultipartBody.Part
+    ) = retrofitService.completeMission(challengeId, missionId, imageFile, memo)
 }
