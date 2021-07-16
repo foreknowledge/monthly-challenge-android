@@ -3,8 +3,7 @@ package com.gdghackathon.monthlychallenges.ui
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -15,14 +14,16 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.*
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
-import com.gdghackathon.monthlychallenges.utils.BitmapUtil
+import com.gdghackathon.monthlychallenges.utils.FileUtil
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
+import java.io.File
 
 class ChallengeContentsActivity : AppCompatActivity() {
     private val challengeViewModel by lazy {
@@ -36,6 +37,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var uploadButton: Button
     private lateinit var editMemo: EditText
+
+    private var imageFile: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,19 +126,19 @@ class ChallengeContentsActivity : AppCompatActivity() {
         }
 
         uploadButton.setOnClickListener {
-            writeMemo(missionId, true)
+            writeMemo(missionId)
             alertDialog.dismiss()
         }
 
         noUploadButton.setOnClickListener {
-            writeMemo(missionId, false)
+            writeMemo(missionId)
             alertDialog.dismiss()
         }
 
         alertDialog.show()
     }
 
-    private fun writeMemo(missionId: Long, isUpload: Boolean) {
+    private fun writeMemo(missionId: Long) {
         val layoutInflater = LayoutInflater.from(this)
         val view = layoutInflater.inflate(R.layout.dialog_write_memo, null)
 
@@ -159,33 +162,26 @@ class ChallengeContentsActivity : AppCompatActivity() {
         })
 
         writeButton.setOnClickListener {
-            completeMission(missionId, isUpload, true)
+            completeMission(missionId, true)
             alertDialog.dismiss()
         }
 
         noWriteButton.setOnClickListener {
-            completeMission(missionId, isUpload, false)
+            completeMission(missionId, false)
             alertDialog.dismiss()
         }
 
         alertDialog.show()
     }
 
-    private fun completeMission(missionId: Long, isUpload: Boolean, isWrite: Boolean) {
-        val imageFile = if (isUpload) {
-            val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-            BitmapUtil.bitmapToImageFile(this, bitmap)
-        } else {
-            null
-        }
-
+    private fun completeMission(missionId: Long, isWrite: Boolean) {
         val memo = if (isWrite) {
             editMemo.editableText.toString()
         } else {
             ""
         }
 
-        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, imageFile, memo)
+        challengeViewModel.completeMission(GlobalApp.challengeId, missionId, imageFile?.absolutePath, memo)
     }
 
     private fun checkCameraPermission() =
@@ -196,7 +192,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             requestPermissions(arrayOf(permission), requestCode)
         } else {
             Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
-            dispatchTakePictureIntent()
+            switchToCamera()
         }
     }
 
@@ -212,7 +208,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() &&
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
-                    dispatchTakePictureIntent()
+                    switchToCamera()
                 } else {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
@@ -222,19 +218,22 @@ class ChallengeContentsActivity : AppCompatActivity() {
         }
     }
 
-    private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
+    private fun switchToCamera() {
+        imageFile = FileUtil.createJpgFileExternal(this)
+
+        // uri 데이터 형태 = content://{authority}/{파일의 디렉토리}/{파일명}
+        val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", imageFile!!)
+
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            .apply { putExtra(MediaStore.EXTRA_OUTPUT, uri) }
+            .also { startActivityForResult(it, REQUEST_IMAGE_CAPTURE) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+            val imageBitmap = BitmapFactory.decodeFile(imageFile?.absolutePath)
 
             imageView.setImageBitmap(imageBitmap)
             uploadButton.isEnabled = true
