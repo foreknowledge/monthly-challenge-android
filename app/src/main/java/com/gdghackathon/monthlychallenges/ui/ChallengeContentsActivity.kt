@@ -77,7 +77,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
         challengeViewModel.challenge.observe(this, {
             binding.challengeContents.challenge = it
 
-            with (binding.challengeContents.missionList) {
+            with(binding.challengeContents.missionList) {
                 val missionList = it.missionList.toMutableList()
                 adapter = MissionListRecyclerAdapter(missionList, editable = false).apply {
                     setOnItemClickListener { mission ->
@@ -160,8 +160,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 }
             }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
-            override fun afterTextChanged(p0: Editable?) { }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {}
         })
 
         writeButton.setOnClickListener {
@@ -214,7 +214,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_CAMERA_PERMISSION_CODE -> {
                 if ((grantResults.isNotEmpty() &&
-                            grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ) {
                     Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
                     switchToCamera()
                 } else {
