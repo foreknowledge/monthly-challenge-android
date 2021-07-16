@@ -1,74 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="30dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageButton
-        android:id="@+id/imagebutton_share"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="22dp"
-        android:background="@drawable/ic_share_1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="mission"
+            type="com.gdghackathon.monthlychallenges.model.data.Mission" />
+    </data>
 
-    <ImageButton
-        android:id="@+id/imagebutton_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="22dp"
-        android:background="@drawable/ic_close"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textview_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mission_date"
-        android:textColor="@color/color_dark_grey"
-        android:textSize="17sp"
-        app:layout_constraintLeft_toRightOf="@id/imagebutton_share"
-        app:layout_constraintRight_toLeftOf="@id/imagebutton_close"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageview_mission_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/color_less_light_grey"
-        android:src="@drawable/no_image"
-        app:layout_constraintTop_toBottomOf="@id/textview_date" />
+        android:layout_height="match_parent"
+        android:paddingTop="30dp">
 
-    <TextView
-        android:id="@+id/textview_mission_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanum_jang_mi_ce"
-        android:text="@string/mission_title"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageview_mission_image" />
+        <ImageButton
+            android:id="@+id/imagebutton_share"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="22dp"
+            android:background="@drawable/ic_share_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textview_mission_memo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/nanum_jang_mi_ce"
-        android:maxLength="200"
-        android:paddingHorizontal="22dp"
-        android:text="@string/mission_memo"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_mission_title" />
+        <ImageButton
+            android:id="@+id/imagebutton_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/ic_close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textview_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mission_date"
+            android:textColor="@color/color_dark_grey"
+            android:textSize="17sp"
+            app:layout_constraintLeft_toRightOf="@id/imagebutton_share"
+            app:layout_constraintRight_toLeftOf="@id/imagebutton_close"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageview_mission_image"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/color_less_light_grey"
+            android:src="@drawable/no_image"
+            app:set_image="@{mission.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_date" />
+
+        <TextView
+            android:id="@+id/textview_mission_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanum_jang_mi_ce"
+            android:text="@{mission.name}"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageview_mission_image" />
+
+        <TextView
+            android:id="@+id/textview_mission_memo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/nanum_jang_mi_ce"
+            android:maxLength="200"
+            android:paddingHorizontal="22dp"
+            android:text="@{mission.memo}"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview_mission_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
