@@ -199,7 +199,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
             requestPermissions(arrayOf(permission), requestCode)
         } else {
-            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
             switchToCamera()
         }
     }
