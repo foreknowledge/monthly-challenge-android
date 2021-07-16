@@ -3,7 +3,6 @@ package com.gdghackathon.monthlychallenges.ui
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
@@ -21,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.gdghackathon.monthlychallenges.*
 import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsBinding
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
+import com.gdghackathon.monthlychallenges.utils.BitmapUtil
 import com.gdghackathon.monthlychallenges.utils.FileUtil
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 import java.io.File
@@ -233,7 +233,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = BitmapFactory.decodeFile(imageFile?.absolutePath)
+            val imageBitmap = imageFile?.absolutePath?.let { BitmapUtil.getBitmap(it) }
 
             imageView.setImageBitmap(imageBitmap)
             uploadButton.isEnabled = true
