@@ -100,7 +100,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
         })
 
         challengeViewModel.missionUpdated.observe(this, {
-            Log.d("test", "mission updated = $it")
             if (it) {
                 challengeViewModel.loadData(challengeId)
             }
