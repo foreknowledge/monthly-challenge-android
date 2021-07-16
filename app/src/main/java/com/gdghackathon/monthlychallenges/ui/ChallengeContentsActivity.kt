@@ -9,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -92,6 +93,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 }
                 adapter?.notifyDataSetChanged()
             }
+
+            hideProgress()
         })
 
         challengeViewModel.challengeId.observe(this, {
@@ -185,6 +188,8 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         // 이미지 파일 초기화
         imageFile = null
+
+        showProgress()
     }
 
     private fun checkCameraPermission() =
@@ -242,4 +247,7 @@ class ChallengeContentsActivity : AppCompatActivity() {
             uploadButton.isEnabled = true
         }
     }
+
+    private fun showProgress() { binding.progressCircular.visibility = View.VISIBLE }
+    private fun hideProgress() { binding.progressCircular.visibility = View.GONE }
 }
