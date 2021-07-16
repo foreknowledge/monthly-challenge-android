@@ -20,6 +20,8 @@ data class Mission(
         var missionCheck: Boolean = false,
         var name: String = "",
         var memo: String? = null,
+        @SerializedName("certification_date")
+        var certificationDate: String? = null,
         @SerializedName("image")
         var imageUrl: String? = null,
         @SerializedName("thumbnail_image")

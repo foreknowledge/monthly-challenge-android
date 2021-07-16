@@ -65,3 +65,11 @@ fun TextView.setTextColor(missionCheck: Boolean?) {
         setTextColor(context.getColor(colorRes))
     }
 }
+
+@BindingAdapter("setDate")
+fun TextView.setDate(date: String?) {
+    text = date?.let {
+        val dateSplit = it.substringBefore("T").split("-")
+        "${dateSplit[0]}년 ${dateSplit[1]}월 ${dateSplit[2]}일"
+    }
+}
