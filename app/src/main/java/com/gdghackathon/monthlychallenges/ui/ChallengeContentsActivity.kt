@@ -182,6 +182,9 @@ class ChallengeContentsActivity : AppCompatActivity() {
         }
 
         challengeViewModel.completeMission(GlobalApp.challengeId, missionId, imageFile?.absolutePath, memo)
+
+        // 이미지 파일 초기화
+        imageFile = null
     }
 
     private fun checkCameraPermission() =
