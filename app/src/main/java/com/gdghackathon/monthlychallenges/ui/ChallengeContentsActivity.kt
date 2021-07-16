@@ -10,7 +10,10 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,6 +26,7 @@ import com.gdghackathon.monthlychallenges.databinding.ActivityChallengeContentsB
 import com.gdghackathon.monthlychallenges.ui.adapter.MissionListRecyclerAdapter
 import com.gdghackathon.monthlychallenges.utils.BitmapUtil
 import com.gdghackathon.monthlychallenges.utils.FileUtil
+import com.gdghackathon.monthlychallenges.utils.ToastUtil
 import com.gdghackathon.monthlychallenges.viewmodel.ChallengeViewModel
 import java.io.File
 
@@ -215,10 +219,10 @@ class ChallengeContentsActivity : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() &&
                             grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 ) {
-                    Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+                    ToastUtil.showToast(this, "Permission granted")
                     switchToCamera()
                 } else {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                    ToastUtil.showToast(this, "Permission denied")
                 }
                 return
             }
