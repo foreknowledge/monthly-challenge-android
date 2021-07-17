@@ -98,6 +98,8 @@ class SetChallengeMissionsFragment(
         with (binding.challengeContents) {
             imageviewChalliney.changeImage(currentChallenge.missionCount)
             tvMissionNumber.setMissionCount(currentChallenge)
+
+            missionList.scrollToPosition(missionListAdapter.itemCount - 1)
         }
 
         binding.buttonCreateChallenge.isEnabled = currentChallenge.missionList.size >= NUM_OF_MISSIONS
