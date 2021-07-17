@@ -11,8 +11,7 @@ import com.gdghackathon.monthlychallenges.model.data.Mission
 class MissionViewHolder(
         private val binding: ItemMissionBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(position: Int,
-             mission: Mission,
+    fun bind(mission: Mission,
              editable: Boolean,
              onEditTextChangedListener: OnEditTextChangedListener,
              onItemClickListener: OnItemClickListener<Mission>?) {
@@ -25,7 +24,7 @@ class MissionViewHolder(
                 override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    onEditTextChangedListener.onEditTextChanged(position, s.toString())
+                    onEditTextChangedListener.onEditTextChanged(adapterPosition, s.toString())
                 }
 
                 override fun afterTextChanged(s: Editable) {}

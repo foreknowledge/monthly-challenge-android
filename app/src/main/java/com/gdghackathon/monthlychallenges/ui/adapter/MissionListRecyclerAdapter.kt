@@ -41,7 +41,7 @@ class MissionListRecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
             when (holder) {
-                is MissionViewHolder -> holder.bind(position, missionList[position], editable,
+                is MissionViewHolder -> holder.bind(missionList[position], editable,
                         onEditTextChangedListener, onMissionItemClickListener)
                 is AddItemViewHolder -> holder.bind {
                     addNewMission()
