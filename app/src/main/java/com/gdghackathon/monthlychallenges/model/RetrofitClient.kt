@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.Type
 
 object RetrofitClient {
-    private const val BASE_URL = "http://15.165.229.191:8080/"
+    private const val BASE_URL = ""
     private val instance: Retrofit? = null
 
     fun getInstance(): Retrofit {

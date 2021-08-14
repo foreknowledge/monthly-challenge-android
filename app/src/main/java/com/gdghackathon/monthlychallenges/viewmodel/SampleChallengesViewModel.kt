@@ -17,7 +17,7 @@ class SampleChallengesViewModel : ViewModel() {
 
     fun loadData() = viewModelScope.launch {
         val response = repository.getAllSampleChallenges()
-        if (response.code() == RESPONSE_CODE_OK) {
+        if (response?.code() == RESPONSE_CODE_OK) {
             _sampleChallenges.value = response.body()
         }
     }

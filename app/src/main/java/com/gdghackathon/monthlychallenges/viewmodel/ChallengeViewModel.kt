@@ -28,14 +28,14 @@ class ChallengeViewModel : ViewModel() {
 
     fun loadData(challengeId: Long) = viewModelScope.launch {
         val response = repository.getChallenge(challengeId)
-        if (response.code() == RESPONSE_CODE_OK) {
+        if (response?.code() == RESPONSE_CODE_OK) {
             _challenge.value = response.body()
         }
     }
 
     fun loadMissions(challengeId: Long, challengeTitle: String) = viewModelScope.launch {
         val response = repository.getChallenge(challengeId)
-        if (response.code() == RESPONSE_CODE_OK) {
+        if (response?.code() == RESPONSE_CODE_OK) {
             val challenge = response.body() ?: return@launch
             _challenge.value = Challenge(name = challengeTitle, missionList = challenge.missionList)
         }
@@ -46,7 +46,7 @@ class ChallengeViewModel : ViewModel() {
 
         val challengeRequest = ChallengeRequest(challenge.name, challenge.missionList)
         val response = repository.createChallenge(challengeRequest)
-        if (response.code() == RESPONSE_CODE_OK) {
+        if (response?.code() == RESPONSE_CODE_OK) {
             _challengeId.value = response.body()?.id
         }
     }
@@ -65,8 +65,8 @@ class ChallengeViewModel : ViewModel() {
         val memoPart = FormFileUtil.getBody("memo", memo ?: "")
 
         val response = repository.completeMission(challengeId, missionId, filePart, memoPart)
-        Log.d("test", "${response.code()}")
-        if (response.code() == RESPONSE_CODE_OK) {
+        Log.d("test", "${response?.code()}")
+        if (response?.code() == RESPONSE_CODE_OK) {
             _missionUpdated.value = true
         }
     }
