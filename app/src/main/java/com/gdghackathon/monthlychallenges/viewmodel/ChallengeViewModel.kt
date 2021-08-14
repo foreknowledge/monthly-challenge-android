@@ -1,6 +1,5 @@
 package com.gdghackathon.monthlychallenges.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -65,7 +64,6 @@ class ChallengeViewModel : ViewModel() {
         val memoPart = FormFileUtil.getBody("memo", memo ?: "")
 
         val response = repository.completeMission(challengeId, missionId, filePart, memoPart)
-        Log.d("test", "${response?.code()}")
         if (response?.code() == RESPONSE_CODE_OK) {
             _missionUpdated.value = true
         }

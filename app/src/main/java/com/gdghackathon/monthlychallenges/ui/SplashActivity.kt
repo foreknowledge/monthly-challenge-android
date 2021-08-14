@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.gdghackathon.monthlychallenges.EXTRA_CHALLENGE_ID
 import com.gdghackathon.monthlychallenges.GlobalApp
@@ -19,7 +18,6 @@ class SplashActivity : AppCompatActivity() {
             getSharedPreferences(getString(R.string.shared_pref_key), MODE_PRIVATE)
                 .getLong(getString(R.string.shared_pref_challenge_id), -1L)
 
-        Log.i("test", GlobalApp.challengeId.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = if (GlobalApp.challengeId == -1L) {

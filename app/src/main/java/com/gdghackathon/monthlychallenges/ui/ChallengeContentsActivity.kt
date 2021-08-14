@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -51,7 +50,6 @@ class ChallengeContentsActivity : AppCompatActivity() {
 
         challengeId = intent.getLongExtra(EXTRA_CHALLENGE_ID, 1)
 
-        Log.i("test", "challenge id = $challengeId")
         challengeViewModel.loadData(challengeId)
 
         setupUI()
